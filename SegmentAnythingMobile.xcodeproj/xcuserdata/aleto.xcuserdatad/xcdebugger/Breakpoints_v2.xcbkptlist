@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "82D134F8-FDBA-4578-BF36-2E68BCA80122"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/PromptEncoder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "predict(image:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21 - 2e04400aa640fdf6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.SegmentAnythingMobile.predict(image: __C.MTLTexture) -&gt; ()"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/PromptEncoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1588">
+               </Location>
+               <Location
+                  uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21 - 77e8afac91f98c2e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.SegmentAnythingMobile.predict(image: __C.MTLTexture) -&gt; __C.MTLTexture"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/PromptEncoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1588">
+               </Location>
+               <Location
+                  uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21 - 77e8afac91f98cec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.SegmentAnythingMobile.predict(image: __C.MTLTexture) -&gt; __C.MTLTexture"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/PromptEncoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1760">
+               </Location>
+               <Location
+                  uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21 - 77e8afac91f98c8d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.SegmentAnythingMobile.predict(image: __C.MTLTexture) -&gt; __C.MTLTexture"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/PromptEncoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "1788">
+               </Location>
+               <Location
+                  uuid = "C64006CF-5C87-4A4B-B08B-603CC64E8C21 - 77e8afac91f98d09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.SegmentAnythingMobile.predict(image: __C.MTLTexture) -&gt; __C.MTLTexture"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/PromptEncoder.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "1900">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69C7A457-EB0D-43A9-8D1F-4181C9D43C58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/NormalizeFilter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "encode(commandBuffer:inPlaceTexture:fallbackCopyAllocator:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC039B6E-241B-43FA-A003-15F61B3622DF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/NormalizeFilter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "encode(commandBuffer:inPlaceTexture:fallbackCopyAllocator:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.RuntimeIssueBreakpoint">
+         <BreakpointContent
+            uuid = "A0DB2AE8-C4EC-4DFF-8AC5-97D16F8D07AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            type = "8"
+            categories = "Metal Diagnostics">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "40477F34-AEEF-4F1B-B568-2FD622C498B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/PromptEncoder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(device:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6018FC5-7BBE-438A-805A-E3BC2EAE1C22"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/PromptEncoder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "predict(image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D0FFA59B-40DE-4F4C-8035-63DE84707759"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/NormalizeResamplingFilter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "encode(commandBuffer:sourceTexture:destinationTexture:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D0FFA59B-40DE-4F4C-8035-63DE84707759 - 9ed303728175eb44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.NormalizeResamplingFilter.encode(commandBuffer: __C.MTLCommandBuffer, sourceTexture: __C.MTLTexture, destinationTexture: __C.MTLTexture) -&gt; ()"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/NormalizeResamplingFilter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "2324">
+               </Location>
+               <Location
+                  uuid = "D0FFA59B-40DE-4F4C-8035-63DE84707759 - 9ed303728175eb44"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SAM.NormalizeResamplingFilter.encode(commandBuffer: __C.MTLCommandBuffer, sourceTexture: __C.MTLTexture, destinationTexture: __C.MTLTexture) -&gt; ()"
+                  moduleName = "SAM"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SAM/NormalizeResamplingFilter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "121"
+                  endingLineNumber = "121"
+                  offsetFromSymbolStart = "2344">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2028840-56B6-4973-A99B-3EBE22706277"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SAM/PromptEncoder.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "predict(image:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

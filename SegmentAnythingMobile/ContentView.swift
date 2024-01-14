@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import SAM
+import Metal
+import MetalKit
 
 struct ContentView: View {
     var body: some View {
@@ -15,10 +18,19 @@ struct ContentView: View {
                 .foregroundStyle(.tint)
             Text("Hello, world!")
         }
+        .onAppear() {
+          let device = MTLCreateSystemDefaultDevice()!
+          let textureLoader = MTKTextureLoader(device: device)
+          let texture = try! textureLoader.newTexture(
+            URL: Bundle.main.url(
+              forResource: "IMG_5102",
+              withExtension: "jpg"
+            )!
+          )
+
+          let sam = SegmentAnythingMobile(device: device)
+          sam.predict(image: texture)
+        }
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
