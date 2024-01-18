@@ -8,31 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		1820BFC42B51BCBD004FBD8F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820BFC32B51BCBD004FBD8F /* main.swift */; };
-		1820BFD32B51BCD0004FBD8F /* SAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; };
-		1820BFD42B51BCD0004FBD8F /* SAM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1820BFDA2B51BCDA004FBD8F /* SAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; };
 		1820BFDB2B51BCDA004FBD8F /* SAM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1820BFDF2B51BCE7004FBD8F /* PromptEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D814D42B4EAF4B0018694F /* PromptEncoder.swift */; };
 		1820BFE02B51BCE7004FBD8F /* NormalizeFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820BFB92B5067C4004FBD8F /* NormalizeFilter.swift */; };
 		1820BFE12B51BCE7004FBD8F /* filters.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1820BFBB2B506F33004FBD8F /* filters.metal */; };
 		1820BFE42B51BD7B004FBD8F /* IMG_5102.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1820BFE32B51BD63004FBD8F /* IMG_5102.jpg */; };
+		182240572B55496E00B849F5 /* image_encoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 182240562B55496E00B849F5 /* image_encoder.mlpackage */; };
+		1822405B2B554FCE00B849F5 /* Preprocessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822405A2B554FCE00B849F5 /* Preprocessing.swift */; };
+		1822405D2B556F7D00B849F5 /* preprocessing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1822405C2B556F7D00B849F5 /* preprocessing.metal */; };
 		18445B452B52F07A009225D6 /* NormalizeResamplingFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18445B442B52F07A009225D6 /* NormalizeResamplingFilter.swift */; };
-		18559A592B52C7850037260E /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = 18559A582B52C7850037260E /* Resources */; };
-		18D814C62B4EAF220018694F /* SegmentAnythingMobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D814C52B4EAF220018694F /* SegmentAnythingMobileApp.swift */; };
-		18D814C82B4EAF220018694F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D814C72B4EAF220018694F /* ContentView.swift */; };
-		18D814CA2B4EAF230018694F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D814C92B4EAF230018694F /* Assets.xcassets */; };
-		18D814CD2B4EAF230018694F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D814CC2B4EAF230018694F /* Preview Assets.xcassets */; };
+		18FB7E3A2B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E392B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift */; };
+		18FB7E3C2B55801600BE552C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E3B2B55801600BE552C /* ContentView.swift */; };
+		18FB7E3E2B55801700BE552C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E3D2B55801700BE552C /* Assets.xcassets */; };
+		18FB7E452B567C2200BE552C /* SAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; };
+		18FB7E462B567C2200BE552C /* SAM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		18FB7E4B2B567E0900BE552C /* ImageEncoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E4A2B567E0900BE552C /* ImageEncoder.mlpackage */; };
+		18FB7E4D2B56D6F400BE552C /* dense_embeddings.bin in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */; };
+		18FB7E4F2B56EDAD00BE552C /* MaskDecoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E4E2B56EDAD00BE552C /* MaskDecoder.mlpackage */; };
+		18FB7E512B591E0A00BE552C /* image_embeddings.bin in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E502B591E0A00BE552C /* image_embeddings.bin */; };
+		18FB7E532B5920FA00BE552C /* SegmenAnything.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E522B5920FA00BE552C /* SegmenAnything.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1820BFD12B51BCD0004FBD8F /* PBXContainerItemProxy */ = {
+		1820BFDC2B51BCDA004FBD8F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18D814BA2B4EAF220018694F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1820BFCC2B51BCD0004FBD8F;
 			remoteInfo = SAM;
 		};
-		1820BFDC2B51BCDA004FBD8F /* PBXContainerItemProxy */ = {
+		18FB7E472B567C2200BE552C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 18D814BA2B4EAF220018694F /* Project object */;
 			proxyType = 1;
@@ -52,17 +58,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1820BFD82B51BCD0004FBD8F /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1820BFD42B51BCD0004FBD8F /* SAM.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1820BFDE2B51BCDA004FBD8F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,6 +65,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1820BFDB2B51BCDA004FBD8F /* SAM.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18FB7E492B567C2200BE552C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				18FB7E462B567C2200BE552C /* SAM.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,14 +89,21 @@
 		1820BFC32B51BCBD004FBD8F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1820BFCD2B51BCD0004FBD8F /* SAM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SAM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1820BFE32B51BD63004FBD8F /* IMG_5102.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5102.jpg; sourceTree = "<group>"; };
+		182240562B55496E00B849F5 /* image_encoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = image_encoder.mlpackage; sourceTree = "<group>"; };
+		182240582B554CC900B849F5 /* Preprocessing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preprocessing-Bridging-Header.h"; sourceTree = "<group>"; };
+		1822405A2B554FCE00B849F5 /* Preprocessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preprocessing.swift; sourceTree = "<group>"; };
+		1822405C2B556F7D00B849F5 /* preprocessing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = preprocessing.metal; sourceTree = "<group>"; };
 		18445B442B52F07A009225D6 /* NormalizeResamplingFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizeResamplingFilter.swift; sourceTree = "<group>"; };
-		18559A582B52C7850037260E /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
-		18D814C22B4EAF220018694F /* SegmentAnythingMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegmentAnythingMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		18D814C52B4EAF220018694F /* SegmentAnythingMobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnythingMobileApp.swift; sourceTree = "<group>"; };
-		18D814C72B4EAF220018694F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		18D814C92B4EAF230018694F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		18D814CC2B4EAF230018694F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		18D814D42B4EAF4B0018694F /* PromptEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEncoder.swift; sourceTree = "<group>"; };
+		18FB7E372B55801600BE552C /* SegmentAnythingMobile-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SegmentAnythingMobile-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FB7E392B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnythingMobile_iOSApp.swift; sourceTree = "<group>"; };
+		18FB7E3B2B55801600BE552C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		18FB7E3D2B55801700BE552C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18FB7E4A2B567E0900BE552C /* ImageEncoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = ImageEncoder.mlpackage; sourceTree = "<group>"; };
+		18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = dense_embeddings.bin; sourceTree = "<group>"; };
+		18FB7E4E2B56EDAD00BE552C /* MaskDecoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = MaskDecoder.mlpackage; sourceTree = "<group>"; };
+		18FB7E502B591E0A00BE552C /* image_embeddings.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = image_embeddings.bin; sourceTree = "<group>"; };
+		18FB7E522B5920FA00BE552C /* SegmenAnything.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmenAnything.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,11 +122,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18D814BF2B4EAF220018694F /* Frameworks */ = {
+		18FB7E342B55801600BE552C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1820BFD32B51BCD0004FBD8F /* SAM.framework in Frameworks */,
+				18FB7E452B567C2200BE552C /* SAM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,10 +145,19 @@
 		1820BFCE2B51BCD0004FBD8F /* SAM */ = {
 			isa = PBXGroup;
 			children = (
+				18FB7E4E2B56EDAD00BE552C /* MaskDecoder.mlpackage */,
+				18FB7E502B591E0A00BE552C /* image_embeddings.bin */,
+				18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */,
+				18FB7E4A2B567E0900BE552C /* ImageEncoder.mlpackage */,
+				182240562B55496E00B849F5 /* image_encoder.mlpackage */,
 				18D814D42B4EAF4B0018694F /* PromptEncoder.swift */,
 				1820BFB92B5067C4004FBD8F /* NormalizeFilter.swift */,
 				1820BFBB2B506F33004FBD8F /* filters.metal */,
 				18445B442B52F07A009225D6 /* NormalizeResamplingFilter.swift */,
+				182240582B554CC900B849F5 /* Preprocessing-Bridging-Header.h */,
+				1822405A2B554FCE00B849F5 /* Preprocessing.swift */,
+				1822405C2B556F7D00B849F5 /* preprocessing.metal */,
+				18FB7E522B5920FA00BE552C /* SegmenAnything.swift */,
 			);
 			path = SAM;
 			sourceTree = "<group>";
@@ -158,42 +180,32 @@
 		18D814B92B4EAF220018694F = {
 			isa = PBXGroup;
 			children = (
-				18D814C42B4EAF220018694F /* SegmentAnythingMobile */,
-				1820BFC22B51BCBD004FBD8F /* SegmentAnythingMobileCLI */,
-				1820BFCE2B51BCD0004FBD8F /* SAM */,
-				18D814C32B4EAF220018694F /* Products */,
 				1820BFD92B51BCDA004FBD8F /* Frameworks */,
+				18D814C32B4EAF220018694F /* Products */,
+				1820BFCE2B51BCD0004FBD8F /* SAM */,
+				18FB7E382B55801600BE552C /* SegmentAnythingMobile-iOS */,
+				1820BFC22B51BCBD004FBD8F /* SegmentAnythingMobileCLI */,
 			);
 			sourceTree = "<group>";
 		};
 		18D814C32B4EAF220018694F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18D814C22B4EAF220018694F /* SegmentAnythingMobile.app */,
 				1820BFC12B51BCBD004FBD8F /* SegmentAnythingMobileCLI */,
 				1820BFCD2B51BCD0004FBD8F /* SAM.framework */,
+				18FB7E372B55801600BE552C /* SegmentAnythingMobile-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		18D814C42B4EAF220018694F /* SegmentAnythingMobile */ = {
+		18FB7E382B55801600BE552C /* SegmentAnythingMobile-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				18559A582B52C7850037260E /* Resources */,
-				18D814C92B4EAF230018694F /* Assets.xcassets */,
-				18D814C72B4EAF220018694F /* ContentView.swift */,
-				18D814CB2B4EAF230018694F /* Preview Content */,
-				18D814C52B4EAF220018694F /* SegmentAnythingMobileApp.swift */,
+				18FB7E392B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift */,
+				18FB7E3B2B55801600BE552C /* ContentView.swift */,
+				18FB7E3D2B55801700BE552C /* Assets.xcassets */,
 			);
-			path = SegmentAnythingMobile;
-			sourceTree = "<group>";
-		};
-		18D814CB2B4EAF230018694F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				18D814CC2B4EAF230018694F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = "SegmentAnythingMobile-iOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,23 +258,23 @@
 			productReference = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		18D814C12B4EAF220018694F /* SegmentAnythingMobile */ = {
+		18FB7E362B55801600BE552C /* SegmentAnythingMobile-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18D814D02B4EAF230018694F /* Build configuration list for PBXNativeTarget "SegmentAnythingMobile" */;
+			buildConfigurationList = 18FB7E422B55801700BE552C /* Build configuration list for PBXNativeTarget "SegmentAnythingMobile-iOS" */;
 			buildPhases = (
-				18D814BE2B4EAF220018694F /* Sources */,
-				18D814BF2B4EAF220018694F /* Frameworks */,
-				18D814C02B4EAF220018694F /* Resources */,
-				1820BFD82B51BCD0004FBD8F /* Embed Frameworks */,
+				18FB7E332B55801600BE552C /* Sources */,
+				18FB7E342B55801600BE552C /* Frameworks */,
+				18FB7E352B55801600BE552C /* Resources */,
+				18FB7E492B567C2200BE552C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1820BFD22B51BCD0004FBD8F /* PBXTargetDependency */,
+				18FB7E482B567C2200BE552C /* PBXTargetDependency */,
 			);
-			name = SegmentAnythingMobile;
-			productName = SegmentAnythingMobile;
-			productReference = 18D814C22B4EAF220018694F /* SegmentAnythingMobile.app */;
+			name = "SegmentAnythingMobile-iOS";
+			productName = "SegmentAnythingMobile-iOS";
+			productReference = 18FB7E372B55801600BE552C /* SegmentAnythingMobile-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -281,7 +293,7 @@
 					1820BFCC2B51BCD0004FBD8F = {
 						CreatedOnToolsVersion = 15.0;
 					};
-					18D814C12B4EAF220018694F = {
+					18FB7E362B55801600BE552C = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -299,9 +311,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18D814C12B4EAF220018694F /* SegmentAnythingMobile */,
 				1820BFC02B51BCBD004FBD8F /* SegmentAnythingMobileCLI */,
 				1820BFCC2B51BCD0004FBD8F /* SAM */,
+				18FB7E362B55801600BE552C /* SegmentAnythingMobile-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -311,16 +323,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FB7E512B591E0A00BE552C /* image_embeddings.bin in Resources */,
+				18FB7E4D2B56D6F400BE552C /* dense_embeddings.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18D814C02B4EAF220018694F /* Resources */ = {
+		18FB7E352B55801600BE552C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D814CD2B4EAF230018694F /* Preview Assets.xcassets in Resources */,
-				18D814CA2B4EAF230018694F /* Assets.xcassets in Resources */,
-				18559A592B52C7850037260E /* Resources in Resources */,
+				18FB7E3E2B55801700BE552C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,33 +352,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				1820BFDF2B51BCE7004FBD8F /* PromptEncoder.swift in Sources */,
+				18FB7E4F2B56EDAD00BE552C /* MaskDecoder.mlpackage in Sources */,
+				18FB7E532B5920FA00BE552C /* SegmenAnything.swift in Sources */,
 				1820BFE12B51BCE7004FBD8F /* filters.metal in Sources */,
 				1820BFE02B51BCE7004FBD8F /* NormalizeFilter.swift in Sources */,
+				182240572B55496E00B849F5 /* image_encoder.mlpackage in Sources */,
+				18FB7E4B2B567E0900BE552C /* ImageEncoder.mlpackage in Sources */,
+				1822405B2B554FCE00B849F5 /* Preprocessing.swift in Sources */,
 				18445B452B52F07A009225D6 /* NormalizeResamplingFilter.swift in Sources */,
+				1822405D2B556F7D00B849F5 /* preprocessing.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		18D814BE2B4EAF220018694F /* Sources */ = {
+		18FB7E332B55801600BE552C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18D814C82B4EAF220018694F /* ContentView.swift in Sources */,
-				18D814C62B4EAF220018694F /* SegmentAnythingMobileApp.swift in Sources */,
+				18FB7E3C2B55801600BE552C /* ContentView.swift in Sources */,
+				18FB7E3A2B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1820BFD22B51BCD0004FBD8F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1820BFCC2B51BCD0004FBD8F /* SAM */;
-			targetProxy = 1820BFD12B51BCD0004FBD8F /* PBXContainerItemProxy */;
-		};
 		1820BFDD2B51BCDA004FBD8F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1820BFCC2B51BCD0004FBD8F /* SAM */;
 			targetProxy = 1820BFDC2B51BCDA004FBD8F /* PBXContainerItemProxy */;
+		};
+		18FB7E482B567C2200BE552C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1820BFCC2B51BCD0004FBD8F /* SAM */;
+			targetProxy = 18FB7E472B567C2200BE552C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -439,6 +457,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Preprocessing-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -479,6 +498,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Preprocessing-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -605,15 +625,14 @@
 			};
 			name = Release;
 		};
-		18D814D12B4EAF230018694F /* Debug */ = {
+		18FB7E432B55801700BE552C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"SegmentAnythingMobile/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4UA7W8VRF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -626,8 +645,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = aletos.dev.SegmentAnythingMobile;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aletos.dev.SegmentAnythingMobile-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -635,15 +654,14 @@
 			};
 			name = Debug;
 		};
-		18D814D22B4EAF230018694F /* Release */ = {
+		18FB7E442B55801700BE552C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_ASSET_PATHS = "\"SegmentAnythingMobile/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4UA7W8VRF2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -656,8 +674,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = aletos.dev.SegmentAnythingMobile;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "aletos.dev.SegmentAnythingMobile-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -695,11 +713,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18D814D02B4EAF230018694F /* Build configuration list for PBXNativeTarget "SegmentAnythingMobile" */ = {
+		18FB7E422B55801700BE552C /* Build configuration list for PBXNativeTarget "SegmentAnythingMobile-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				18D814D12B4EAF230018694F /* Debug */,
-				18D814D22B4EAF230018694F /* Release */,
+				18FB7E432B55801700BE552C /* Debug */,
+				18FB7E442B55801700BE552C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

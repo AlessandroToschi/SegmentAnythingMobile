@@ -42,6 +42,7 @@ class NormalizeResamplingFilter: MPSUnaryImageKernel {
     inPlaceTexture texture: UnsafeMutablePointer<MTLTexture>,
     fallbackCopyAllocator copyAllocator: MPSCopyAllocator? = nil
   ) -> Bool {
+    
     guard let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder()
     else { return false }
     
@@ -65,6 +66,7 @@ class NormalizeResamplingFilter: MPSUnaryImageKernel {
       length: MemoryLayout<SIMD3<Float>>.size,
       index: 1
     )
+    //computeCommandEncoder.set
     computeCommandEncoder.dispatchThreads(
       MTLSize(
         width: texture.pointee.width,

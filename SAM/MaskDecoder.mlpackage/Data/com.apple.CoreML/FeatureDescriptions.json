@@ -1,0 +1,27 @@
+{
+  "Outputs" : {
+    "masks" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "iou_predictions" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "Inputs" : {
+    "imageEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "imagePointEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "densePromptEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "sparsePromptEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "TrainingInputs" : {
+
+  }
+}
