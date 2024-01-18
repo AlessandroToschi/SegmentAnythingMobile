@@ -48,18 +48,26 @@ MTLCaptureManager.shared().stopCapture()
 Thread.sleep(forTimeInterval: 1.0)
 */
 
+/*
+ let promptEncoder = PromptEncoder()
+ let promptEmbedding = promptEncoder.pointEmbeddings(
+   points: [
+     Point(x: 0.0, y: 0.0, label: 1),
+     Point(x: 50.0, y: 50.0, label: 1),
+     Point(x: 100.0, y: 100.0, label: 0)
+   ],
+   width: 1024,
+   height: 1024
+ )
+ */
+
+let segmentAnything = SegmentAnything(device: device)
+segmentAnything.load()
+segmentAnything.preprocess(image: image)
 let startTime = DispatchTime.now()
-let promptEncoder = PromptEncoder()
-let promptEmbedding = promptEncoder.pointEmbeddings(
-  points: [
-    Point(x: 0.0, y: 0.0, label: 1),
-    Point(x: 50.0, y: 50.0, label: 1),
-    Point(x: 100.0, y: 100.0, label: 0)
-  ],
-  width: 1024,
-  height: 1024
-)
+
+
+segmentAnything.predictMask(points: [Point(x: 0.0, y: 0.0, label: 1)])
 let endTime = DispatchTime.now()
-let elapsed = (endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1_000
-print("Elapsed \(elapsed) microseconds")
-print(promptEmbedding.count)
+let elapsed = (endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1_000_000
+print("Elapsed \(elapsed) ms")
