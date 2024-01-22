@@ -1,0 +1,21 @@
+{
+  "Outputs" : {
+    "sparseEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "denseEmbeddings" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "Inputs" : {
+    "points" : {
+      "MLFeatureShortDescription" : "--"
+    },
+    "labels" : {
+      "MLFeatureShortDescription" : "--"
+    }
+  },
+  "TrainingInputs" : {
+
+  }
+}

@@ -59,8 +59,8 @@ public class ImageProcessor {
     let scale = Double(self.inputSize) / Double(max(self.originalWidth, self.originalHeight))
     let width = Int(Double(self.originalWidth) * scale + 0.5)
     let height = Int(Double(self.originalHeight) * scale + 0.5)
-    let offsetX = (self.inputSize - width) / 2
-    let offsetY = (self.inputSize - height) / 2
+    let offsetX = self.inputSize - width
+    let offsetY = self.inputSize - height
     
     let channels = 3
     let bytesPerChannel = MemoryLayout<Float>.stride * self.inputSize * self.inputSize
@@ -76,7 +76,7 @@ public class ImageProcessor {
     var preprocessingInput = PreprocessingInput(
       mean: self.mean,
       std: self.std,
-      size: SIMD2<UInt32>(UInt32(self.inputSize), UInt32(self.inputSize)),
+      size: SIMD2<UInt32>(UInt32(width), UInt32(height)),
       offset: SIMD2<UInt32>(UInt32(offsetX), UInt32(offsetY))
     )
     
@@ -118,16 +118,16 @@ public class ImageProcessor {
     if self.device.supportsFamily(.common3) {
       computeCommandEncoder.dispatchThreads(
         MTLSize(
-          width: self.inputSize,
-          height: self.inputSize,
+          width: width,
+          height: height,
           depth: 1
         ),
         threadsPerThreadgroup: threadgroupSize
       )
     } else {
       let gridSize = MTLSize(
-        width: (self.inputSize + threadgroupSize.width - 1) / threadgroupSize.width,
-        height: (self.inputSize + threadgroupSize.height - 1) / threadgroupSize.height,
+        width: (width + threadgroupSize.width - 1) / threadgroupSize.width,
+        height: (height + threadgroupSize.height - 1) / threadgroupSize.height,
         depth: 1
       )
       computeCommandEncoder.dispatchThreadgroups(
@@ -162,8 +162,8 @@ public class ImageProcessor {
   public func postprocess(masks: MLMultiArray, commandQueue: MTLCommandQueue) -> [MTLTexture] {
     let scale = Float(self.outputSize) / Float(max(self.originalWidth, self.originalHeight))
     let scaledWidth = (Float(self.originalWidth) * scale).rounded()
-    let scaledHeight = (Float(originalHeight) * scale).rounded()
-    var scaledSize = SIMD2<Float>(scaledWidth, scaledHeight)
+    let scaledHeight = (Float(self.originalHeight) * scale).rounded()
+    var scaleSizeFactor = SIMD2<Float>(scaledWidth / Float(self.outputSize), scaledHeight / Float(self.outputSize))
     
     var outputMasks = [MTLTexture]()
     
@@ -174,6 +174,42 @@ public class ImageProcessor {
       height: self.preprocessComputePipelineState.maxTotalThreadsPerThreadgroup / self.preprocessComputePipelineState.threadExecutionWidth,
       depth: 1
     )
+    let gridSizeOrThreads: MTLSize
+    
+    if self.device.supportsFamily(.common3) {
+      gridSizeOrThreads = MTLSize(
+        width: self.originalWidth,
+        height: self.originalHeight,
+        depth: 1
+      )
+    } else {
+      gridSizeOrThreads = MTLSize(
+        width: (self.originalWidth + threadgroupSize.width - 1) / threadgroupSize.width,
+        height: (self.originalHeight + threadgroupSize.height - 1) / threadgroupSize.height,
+        depth: 1
+      )
+    }
+    
+    let outputMaskTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
+      pixelFormat: .r32Float,
+      width: self.originalWidth,
+      height: self.originalHeight,
+      mipmapped: false
+    )
+    outputMaskTextureDescriptor.usage = [.shaderRead, .shaderWrite]
+    outputMaskTextureDescriptor.storageMode = .shared
+    
+    let maskTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
+      pixelFormat: .r32Float,
+      width: masks.shape[3].intValue,
+      height: masks.shape[2].intValue,
+      mipmapped: false
+    )
+    maskTextureDescriptor.storageMode = .shared
+    
+    let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder()!
+    computeCommandEncoder.setComputePipelineState(self.postprocessComputePipelineState)
+    computeCommandEncoder.setBytes(&scaleSizeFactor, length: MemoryLayout<SIMD2<Float>>.stride, index: 0)
     
     masks.withUnsafeMutableBytes {
       pointer,
@@ -181,23 +217,6 @@ public class ImageProcessor {
       
       let maskPointer = pointer.bindMemory(to: Float.self).baseAddress!
       let maskStride = strides[1]
-      
-      let outputMaskTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
-        pixelFormat: .r32Float,
-        width: self.originalWidth,
-        height: self.originalHeight,
-        mipmapped: false
-      )
-      outputMaskTextureDescriptor.usage = [.shaderRead, .shaderWrite]
-      outputMaskTextureDescriptor.storageMode = .shared
-      
-      let maskTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
-        pixelFormat: .r32Float,
-        width: masks.shape[3].intValue,
-        height: masks.shape[2].intValue,
-        mipmapped: false
-      )
-      maskTextureDescriptor.storageMode = .shared
       
       for maskIndex in 0 ..< masks.shape[1].intValue {
         let maskBuffer = self.device.makeBuffer(
@@ -210,37 +229,27 @@ public class ImageProcessor {
           bytesPerRow: strides[2] * MemoryLayout<Float>.stride
         )!
         let outputMaskTexture = self.device.makeTexture(descriptor: outputMaskTextureDescriptor)!
-        
-        let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder()!
-        computeCommandEncoder.setComputePipelineState(self.postprocessComputePipelineState)
+
         computeCommandEncoder.setTexture(maskTexture, index: 0)
         computeCommandEncoder.setTexture(outputMaskTexture, index: 1)
-        computeCommandEncoder.setBytes(&scaledSize, length: MemoryLayout<SIMD2<Float>>.stride, index: 0)
 
         if self.device.supportsFamily(.common3) {
           computeCommandEncoder.dispatchThreads(
-            MTLSize(
-              width: self.originalWidth,
-              height: self.originalHeight,
-              depth: 1
-            ),
+            gridSizeOrThreads,
             threadsPerThreadgroup: threadgroupSize
           )
         } else {
-          let gridSize = MTLSize(
-            width: (self.originalWidth + threadgroupSize.width - 1) / threadgroupSize.width,
-            height: (self.originalHeight + threadgroupSize.height - 1) / threadgroupSize.height,
-            depth: 1
-          )
           computeCommandEncoder.dispatchThreadgroups(
-            gridSize,
+            gridSizeOrThreads,
             threadsPerThreadgroup: threadgroupSize
           )
         }
         
-        computeCommandEncoder.endEncoding()
+        outputMasks.append(outputMaskTexture)
       }
     }
+    
+    computeCommandEncoder.endEncoding()
     
     commandBuffer.commit()
     commandBuffer.waitUntilCompleted()

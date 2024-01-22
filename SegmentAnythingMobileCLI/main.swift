@@ -24,50 +24,28 @@ let image = try! textureLoader.newTexture(
   ]
 )
 
-/*
-let captureDescriptor = MTLCaptureDescriptor()
-captureDescriptor.captureObject = device
-captureDescriptor.destination = .developerTools
-try! MTLCaptureManager.shared().startCapture(with: captureDescriptor)
-
-let commandBuffer = commandQueue.makeCommandBuffer()!
-
-let preprocessing = Preprocessing(
-  device: device,
-  mean: SIMD3<Float>(123.675 / 255.0, 116.28 / 255.0, 103.53 / 255.0),
-  std: SIMD3<Float>(58.395 / 255.0, 57.12 / 255.0, 57.375 / 255.0)
-)
-preprocessing.load()
-let features = preprocessing.preprocess(
-  image: image,
-  commandBuffer: commandBuffer
-)
-
-MTLCaptureManager.shared().stopCapture()
-
-Thread.sleep(forTimeInterval: 1.0)
-*/
-
-/*
- let promptEncoder = PromptEncoder()
- let promptEmbedding = promptEncoder.pointEmbeddings(
-   points: [
-     Point(x: 0.0, y: 0.0, label: 1),
-     Point(x: 50.0, y: 50.0, label: 1),
-     Point(x: 100.0, y: 100.0, label: 0)
-   ],
-   width: 1024,
-   height: 1024
- )
- */
-
 let segmentAnything = SegmentAnything(device: device)
 segmentAnything.load()
 segmentAnything.preprocess(image: image)
 let startTime = DispatchTime.now()
 
 
-segmentAnything.predictMask(points: [Point(x: 0.0, y: 0.0, label: 1)])
+segmentAnything.predictMask(
+  points: [
+    Point(
+      x: 1526,
+      y: 2456,
+      label: 1
+    ),
+    Point(
+      x: 1833,
+      y: 2397,
+      label: 1
+    )
+  ],
+  outputDirectoryUrl: URL.documentsDirectory
+)
+
 let endTime = DispatchTime.now()
 let elapsed = (endTime.uptimeNanoseconds - startTime.uptimeNanoseconds) / 1_000_000
 print("Elapsed \(elapsed) ms")

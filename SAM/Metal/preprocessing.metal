@@ -10,7 +10,7 @@
 
 using namespace metal;
 
-constexpr sampler preprocessing_sampler = sampler(filter::linear);
+constexpr sampler preprocessing_sampler = sampler(coord::normalized, address::clamp_to_edge, filter::linear);
 
 kernel void preprocessing_kernel(texture2d<float, access::sample> texture [[ texture(0) ]],
                                  constant PreprocessingInput& input [[ buffer(0) ]],
@@ -27,7 +27,7 @@ kernel void preprocessing_kernel(texture2d<float, access::sample> texture [[ tex
   float4 color = texture.sample(preprocessing_sampler, uv);
   color.rgb = (color.rgb - input.mean) / input.std;
   
-  const int index = (xy.y + input.offset.y) * input.size.x + xy.x + input.offset.x;
+  const int index = xy.y * (input.size.x + input.offset.x) + xy.x + input.offset.y;
   
   rBuffer[index] = color.r;
   gBuffer[index] = color.g;

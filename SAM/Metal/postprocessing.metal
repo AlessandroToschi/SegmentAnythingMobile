@@ -12,7 +12,7 @@ constexpr sampler linear_sampler = sampler(filter::linear);
 
 kernel void postprocessing_kernel(texture2d<float, access::sample> mask [[ texture(0) ]],
                                   texture2d<float, access::read_write> output [[ texture (1) ]],
-                                  constant float2& mask_size [[ buffer(0) ]],
+                                  constant float2& scale_size_factor [[ buffer(0) ]],
                                   uint2 xy [[ thread_position_in_grid] ]) {
   
   if (xy.x >= output.get_width() || xy.y >= output.get_height()) {
@@ -20,5 +20,8 @@ kernel void postprocessing_kernel(texture2d<float, access::sample> mask [[ textu
   }
   
   const float2 uv = float2(xy) / float2(output.get_width(), output.get_height());
-  output.write(step(mask.sample(linear_sampler, uv), 0.0), xy);
+  const float2 mask_uv = uv * scale_size_factor;
+  const float4 mask_value = 1.0f - step(mask.sample(linear_sampler, mask_uv), 0.0f);
+  
+  output.write(mask_value, xy);
 }
