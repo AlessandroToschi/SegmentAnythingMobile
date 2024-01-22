@@ -10,7 +10,7 @@ import Metal
 import MetalPerformanceShaders
 import CoreML
 
-public class ImageProcessor {
+class ImageProcessor {
   private let device: MTLDevice
   private let mean: SIMD3<Float>
   private let std: SIMD3<Float>
@@ -20,12 +20,15 @@ public class ImageProcessor {
   private var originalWidth: Int!
   private var originalHeight: Int!
   
+  private var resizedWidth: Int!
+  private var resizedHeight: Int!
+  
   private var preprocessComputePipelineState: MTLComputePipelineState!
   private var inputBuffer: MTLBuffer!
   
   private var postprocessComputePipelineState: MTLComputePipelineState!
   
-  public init(
+  init(
     device: MTLDevice,
     mean: SIMD3<Float>,
     std: SIMD3<Float>
@@ -39,8 +42,13 @@ public class ImageProcessor {
     self.preprocessComputePipelineState = nil
   }
   
-  public func load() {
-    let library = try! self.device.makeDefaultLibrary(bundle: Bundle(for: Self.self))
+  func load() {
+    let libraryUrl = Bundle(for: Self.self).url(
+      forResource: "image_processor",
+      withExtension: "metallib"
+    )!
+    
+    let library = try! self.device.makeLibrary(URL: libraryUrl)
     
     let preprocessKernelFunction = library.makeFunction(name: "preprocessing_kernel")!
     let postprocessKernelFunction = library.makeFunction(name: "postprocessing_kernel")!
@@ -49,7 +57,7 @@ public class ImageProcessor {
     self.postprocessComputePipelineState = try! self.device.makeComputePipelineState(function: postprocessKernelFunction)
   }
   
-  public func preprocess(
+  func preprocess(
     image: MTLTexture,
     commandQueue: MTLCommandQueue
   ) -> MLMultiArray {
@@ -57,10 +65,10 @@ public class ImageProcessor {
     self.originalHeight = image.height
     
     let scale = Double(self.inputSize) / Double(max(self.originalWidth, self.originalHeight))
-    let width = Int(Double(self.originalWidth) * scale + 0.5)
-    let height = Int(Double(self.originalHeight) * scale + 0.5)
-    let offsetX = self.inputSize - width
-    let offsetY = self.inputSize - height
+    self.resizedWidth = Int(Double(self.originalWidth) * scale + 0.5)
+    self.resizedHeight = Int(Double(self.originalHeight) * scale + 0.5)
+    let paddingX = self.inputSize - self.resizedWidth
+    let paddingY = self.inputSize - self.resizedHeight
     
     let channels = 3
     let bytesPerChannel = MemoryLayout<Float>.stride * self.inputSize * self.inputSize
@@ -76,8 +84,8 @@ public class ImageProcessor {
     var preprocessingInput = PreprocessingInput(
       mean: self.mean,
       std: self.std,
-      size: SIMD2<UInt32>(UInt32(width), UInt32(height)),
-      offset: SIMD2<UInt32>(UInt32(offsetX), UInt32(offsetY))
+      size: SIMD2<UInt32>(UInt32(self.resizedWidth), UInt32(self.resizedHeight)),
+      padding: SIMD2<UInt32>(UInt32(paddingX), UInt32(paddingY))
     )
     
     let commandBuffer = commandQueue.makeCommandBuffer()!
@@ -118,16 +126,16 @@ public class ImageProcessor {
     if self.device.supportsFamily(.common3) {
       computeCommandEncoder.dispatchThreads(
         MTLSize(
-          width: width,
-          height: height,
+          width: self.resizedWidth,
+          height: self.resizedHeight,
           depth: 1
         ),
         threadsPerThreadgroup: threadgroupSize
       )
     } else {
       let gridSize = MTLSize(
-        width: (width + threadgroupSize.width - 1) / threadgroupSize.width,
-        height: (height + threadgroupSize.height - 1) / threadgroupSize.height,
+        width: (self.resizedWidth + threadgroupSize.width - 1) / threadgroupSize.width,
+        height: (self.resizedHeight + threadgroupSize.height - 1) / threadgroupSize.height,
         depth: 1
       )
       computeCommandEncoder.dispatchThreadgroups(
@@ -159,11 +167,14 @@ public class ImageProcessor {
     )
   }
   
-  public func postprocess(masks: MLMultiArray, commandQueue: MTLCommandQueue) -> [MTLTexture] {
+  func postprocess(masks: MLMultiArray, commandQueue: MTLCommandQueue) -> [MTLTexture] {
     let scale = Float(self.outputSize) / Float(max(self.originalWidth, self.originalHeight))
     let scaledWidth = (Float(self.originalWidth) * scale).rounded()
     let scaledHeight = (Float(self.originalHeight) * scale).rounded()
-    var scaleSizeFactor = SIMD2<Float>(scaledWidth / Float(self.outputSize), scaledHeight / Float(self.outputSize))
+    let scaleSizeFactor = SIMD2<Float>(
+      scaledWidth / Float(self.outputSize),
+      scaledHeight / Float(self.outputSize)
+    )
     
     var outputMasks = [MTLTexture]()
     
@@ -207,9 +218,15 @@ public class ImageProcessor {
     )
     maskTextureDescriptor.storageMode = .shared
     
+    var postprocessingInput = PostprocessingInput(scaleSizeFactor: scaleSizeFactor)
+    
     let computeCommandEncoder = commandBuffer.makeComputeCommandEncoder()!
     computeCommandEncoder.setComputePipelineState(self.postprocessComputePipelineState)
-    computeCommandEncoder.setBytes(&scaleSizeFactor, length: MemoryLayout<SIMD2<Float>>.stride, index: 0)
+    computeCommandEncoder.setBytes(
+      &postprocessingInput,
+      length: MemoryLayout<PostprocessingInput>.stride,
+      index: 0
+    )
     
     masks.withUnsafeMutableBytes {
       pointer,
@@ -229,10 +246,10 @@ public class ImageProcessor {
           bytesPerRow: strides[2] * MemoryLayout<Float>.stride
         )!
         let outputMaskTexture = self.device.makeTexture(descriptor: outputMaskTextureDescriptor)!
-
+        
         computeCommandEncoder.setTexture(maskTexture, index: 0)
         computeCommandEncoder.setTexture(outputMaskTexture, index: 1)
-
+        
         if self.device.supportsFamily(.common3) {
           computeCommandEncoder.dispatchThreads(
             gridSizeOrThreads,
@@ -253,7 +270,52 @@ public class ImageProcessor {
     
     commandBuffer.commit()
     commandBuffer.waitUntilCompleted()
-
+    
     return outputMasks
+  }
+  
+  func mapPoints(points: [Point]) -> PromptEncoderInput {
+    let pointsShape = [1, points.count, 2]
+    let labelsShape = [1, points.count]
+    let scaleWidth = Float(self.resizedWidth) / Float(self.originalWidth)
+    let scaleHeight = Float(self.resizedHeight) / Float(self.originalHeight)
+    
+    let pointsTensor = MLShapedArray<Float>(
+      scalars: points.map({ [$0.x * scaleWidth, $0.y * scaleHeight] })
+        .reduce(into: [], { $0.append(contentsOf: $1) }),
+      shape: pointsShape
+    )
+    let labelsTensor = MLShapedArray<Float>(
+      scalars: points.map({ Float($0.label) }),
+      shape: labelsShape
+    )
+    
+    return PromptEncoderInput(
+      points: pointsTensor,
+      labels: labelsTensor
+    )
+  }
+  
+  func loadTensor(tensorName: String, tensorExtension: String = "bin", shape: [Int]) -> MLMultiArray {
+    let count = shape.reduce(1, *)
+    let strides = shape.reduce([Int](), { return $0 + [($0.last ?? 1) * $1] }).reversed()
+    
+    let tensorUrl = Bundle(for: Self.self).url(
+      forResource: tensorName,
+      withExtension: tensorExtension
+    )!
+    
+    let tensorPointer = UnsafeMutablePointer<Float>.allocate(capacity: count)
+    
+    let tensorData = try! Data(contentsOf: tensorUrl)
+    (tensorData as NSData).getBytes(tensorPointer, length: tensorData.count)
+    
+    return try! MLMultiArray(
+      dataPointer: tensorPointer,
+      shape: shape as [NSNumber],
+      dataType: .float32,
+      strides: strides.reversed() as [NSNumber],
+      deallocator: { $0.deallocate() }
+    )
   }
 }

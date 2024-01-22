@@ -9,6 +9,22 @@ import Foundation
 import Metal
 import CoreML
 
+public struct Point {
+  var x: Float
+  var y: Float
+  var label: Int
+  
+  public init(
+    x: Float,
+    y: Float,
+    label: Int
+  ) {
+    self.x = x
+    self.y = y
+    self.label = label
+  }
+}
+
 public class SegmentAnything {
   private let device: MTLDevice
   private let commandQueue: MTLCommandQueue
@@ -20,8 +36,7 @@ public class SegmentAnything {
   private var imageEmbeddings: MLMultiArray!
   private var imageEncoder: ImageEncoder!
   
-  private var promptEncoder: PromptEncoderS
-  private var pEncoder: PromptEncoder!
+  private var promptEncoder: PromptEncoder!
   private var imagePointEmbeddings: MLMultiArray!
   private var denseEmbeddings: MLMultiArray!
   
@@ -35,25 +50,21 @@ public class SegmentAnything {
       mean: SIMD3<Float>(123.675 / 255.0, 116.28 / 255.0, 103.53 / 255.0),
       std: SIMD3<Float>(58.395 / 255.0, 57.12 / 255.0, 57.375 / 255.0)
     )
-    self.promptEncoder = PromptEncoderS()
   }
   
   public func load() {
-    let captureDescriptor = MTLCaptureDescriptor()
-    captureDescriptor.captureObject = self.commandQueue
-    captureDescriptor.destination = .developerTools
-    try! MTLCaptureManager.shared().startCapture(with: captureDescriptor)
-    
     self.imageProcessor.load()
     
     let modelConfiguration = MLModelConfiguration()
     modelConfiguration.computeUnits = .cpuAndGPU
     self.imageEncoder = try! ImageEncoder(configuration: modelConfiguration)
     
-    self.imagePointEmbeddings = self.promptEncoder.imagePointEmbeddings()
-    //self.denseEmbeddings = self.promptEncoder.denseEmbeddings()
+    self.imagePointEmbeddings = self.imageProcessor.loadTensor(
+      tensorName: "image_embeddings",
+      shape: [1, 256, 64, 64]
+    )
     
-    self.pEncoder = try! PromptEncoder()
+    self.promptEncoder = try! PromptEncoder()
     
     modelConfiguration.computeUnits = .all
     self.maskDecoder = try! MaskDecoder(configuration: modelConfiguration)
@@ -68,43 +79,16 @@ public class SegmentAnything {
       commandQueue: self.commandQueue
     )
     
-    let resizedImageUrl = URL.documentsDirectory.appending(path: "image.bin")
-    resizedImage.withUnsafeBytes { pointer in
-      try! Data(pointer).write(to: resizedImageUrl)
-    }
-    
     let imageEncoderInput = ImageEncoderInput(input: resizedImage)
     let imageEncoderOutput = try! self.imageEncoder.prediction(input: imageEncoderInput)
     
     self.imageEmbeddings = imageEncoderOutput.output
   }
   
-  public func predictMask(points: [Point], outputDirectoryUrl: URL) {
-    let pEncoderOutput = try! self.pEncoder.prediction(
-      input: points.promptEncoderInput()
+  public func predictMasks(points: [Point]) -> [(MTLTexture, Float)] {
+    let pEncoderOutput = try! self.promptEncoder.prediction(
+      input: self.imageProcessor.mapPoints(points: points)
     )
-    
-    /*
-     let densePromptEmbeddingsUrl = outputDirectoryUrl.appending(path: "dense_prompt_embeddings.bin")
-     self.denseEmbeddings.withUnsafeBytes { pointer in
-     try! Data(pointer).write(to: densePromptEmbeddingsUrl)
-     }
-     
-     let sparsePromptEmbeddingsUrl = outputDirectoryUrl.appending(path: "sparse_prompt_embeddings.bin")
-     pointEmbeddings.withUnsafeBytes { pointer in
-     try! Data(pointer).write(to: sparsePromptEmbeddingsUrl)
-     }
-     
-     let imagePointEmbeddingsUrl = outputDirectoryUrl.appending(path: "image_pe.bin")
-     self.imagePointEmbeddings.withUnsafeBytes { pointer in
-     try! Data(pointer).write(to: imagePointEmbeddingsUrl)
-     }
-     
-     let imageEmbeddingsUrl = outputDirectoryUrl.appending(path: "image_embeddings.bin")
-     self.imageEmbeddings.withUnsafeBytes { pointer in
-     try! Data(pointer).write(to: imageEmbeddingsUrl)
-     }
-     */
     
     let maskDecoderInput = MaskDecoderInput(
       imageEmbeddings: self.imageEmbeddings,
@@ -119,33 +103,9 @@ public class SegmentAnything {
       commandQueue: self.commandQueue
     )
     
-    //MTLCaptureManager.shared().stopCapture()
-    
-    print(maskDecoderOutput.iou_predictions[0])
-    print(maskDecoderOutput.iou_predictions[1])
-    print(maskDecoderOutput.iou_predictions[2])
-    print(maskDecoderOutput.iou_predictions[3])
-  }
-}
-
-extension Array where Element == Point {
-  func promptEncoderInput() -> PromptEncoderInput {
-    let pointsShape = [1, count, 2]
-    let labelsShape = [1, count]
-    return PromptEncoderInput(
-      points: MLShapedArray<Float>(
-        scalars: self.map({
-          [$0.x * (768.0 / 3024.0), $0.y * (1024.0 / 4032.0)]
-        }).reduce(into: [],
-                  {
-                $0.append(contentsOf: $1)
-                  }),
-        shape: pointsShape
-      ),
-      labels: MLShapedArray<Float>(
-        scalars: self.map({ Float($0.label) }),
-        shape: labelsShape
-      )
-    )
+    return zip(
+      masks,
+      maskDecoderOutput.iou_predictionsShapedArray.scalars
+    ).reduce(into: [], { $0.append(($1.0, $1.1))})
   }
 }

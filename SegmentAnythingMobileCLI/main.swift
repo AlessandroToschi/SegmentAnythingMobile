@@ -30,7 +30,7 @@ segmentAnything.preprocess(image: image)
 let startTime = DispatchTime.now()
 
 
-segmentAnything.predictMask(
+segmentAnything.predictMasks(
   points: [
     Point(
       x: 1526,
@@ -42,8 +42,7 @@ segmentAnything.predictMask(
       y: 2397,
       label: 1
     )
-  ],
-  outputDirectoryUrl: URL.documentsDirectory
+  ]
 )
 
 let endTime = DispatchTime.now()

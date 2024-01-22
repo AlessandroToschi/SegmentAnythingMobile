@@ -10,22 +10,21 @@
 		1820BFC42B51BCBD004FBD8F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1820BFC32B51BCBD004FBD8F /* main.swift */; };
 		1820BFDA2B51BCDA004FBD8F /* SAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; };
 		1820BFDB2B51BCDA004FBD8F /* SAM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1820BFDF2B51BCE7004FBD8F /* PromptEncoderS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D814D42B4EAF4B0018694F /* PromptEncoderS.swift */; };
 		1820BFE42B51BD7B004FBD8F /* IMG_5102.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1820BFE32B51BD63004FBD8F /* IMG_5102.jpg */; };
 		1822405B2B554FCE00B849F5 /* ImageProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822405A2B554FCE00B849F5 /* ImageProcessor.swift */; };
-		1822405D2B556F7D00B849F5 /* preprocessing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 1822405C2B556F7D00B849F5 /* preprocessing.metal */; };
 		1836782F2B5AD2C4008AD1D9 /* PromptEncoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 1836782E2B5AD2C4008AD1D9 /* PromptEncoder.mlpackage */; };
+		184008C02B5E6A3E00F95742 /* image_processor.metal in Sources */ = {isa = PBXBuildFile; fileRef = 184008BF2B5E6A3E00F95742 /* image_processor.metal */; };
+		184008C32B5E6A8800F95742 /* ImageProcessor-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 184008C22B5E6A8800F95742 /* ImageProcessor-Bridging-Header.h */; };
+		184008C72B5E6C8F00F95742 /* image_processor.metallib in Resources */ = {isa = PBXBuildFile; fileRef = 184008C52B5E6C8F00F95742 /* image_processor.metallib */; };
 		18FB7E3A2B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E392B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift */; };
 		18FB7E3C2B55801600BE552C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E3B2B55801600BE552C /* ContentView.swift */; };
 		18FB7E3E2B55801700BE552C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E3D2B55801700BE552C /* Assets.xcassets */; };
 		18FB7E452B567C2200BE552C /* SAM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; };
 		18FB7E462B567C2200BE552C /* SAM.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1820BFCD2B51BCD0004FBD8F /* SAM.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18FB7E4B2B567E0900BE552C /* ImageEncoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E4A2B567E0900BE552C /* ImageEncoder.mlpackage */; };
-		18FB7E4D2B56D6F400BE552C /* dense_embeddings.bin in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */; };
 		18FB7E4F2B56EDAD00BE552C /* MaskDecoder.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E4E2B56EDAD00BE552C /* MaskDecoder.mlpackage */; };
 		18FB7E512B591E0A00BE552C /* image_embeddings.bin in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E502B591E0A00BE552C /* image_embeddings.bin */; };
 		18FB7E532B5920FA00BE552C /* SegmentAnything.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E522B5920FA00BE552C /* SegmentAnything.swift */; };
-		18FB7E552B592BD000BE552C /* postprocessing.metal in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E542B592BD000BE552C /* postprocessing.metal */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,21 +84,20 @@
 		1820BFC32B51BCBD004FBD8F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1820BFCD2B51BCD0004FBD8F /* SAM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SAM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1820BFE32B51BD63004FBD8F /* IMG_5102.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_5102.jpg; sourceTree = "<group>"; };
-		182240582B554CC900B849F5 /* Preprocessing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Preprocessing-Bridging-Header.h"; sourceTree = "<group>"; };
 		1822405A2B554FCE00B849F5 /* ImageProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProcessor.swift; sourceTree = "<group>"; };
-		1822405C2B556F7D00B849F5 /* preprocessing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = preprocessing.metal; sourceTree = "<group>"; };
 		1836782E2B5AD2C4008AD1D9 /* PromptEncoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = PromptEncoder.mlpackage; sourceTree = "<group>"; };
-		18D814D42B4EAF4B0018694F /* PromptEncoderS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEncoderS.swift; sourceTree = "<group>"; };
+		184008BF2B5E6A3E00F95742 /* image_processor.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = image_processor.metal; sourceTree = "<group>"; };
+		184008C22B5E6A8800F95742 /* ImageProcessor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageProcessor-Bridging-Header.h"; sourceTree = "<group>"; };
+		184008C42B5E6C8F00F95742 /* image_processor.ir */ = {isa = PBXFileReference; lastKnownFileType = file; path = image_processor.ir; sourceTree = "<group>"; };
+		184008C52B5E6C8F00F95742 /* image_processor.metallib */ = {isa = PBXFileReference; lastKnownFileType = "archive.metal-library"; path = image_processor.metallib; sourceTree = "<group>"; };
 		18FB7E372B55801600BE552C /* SegmentAnythingMobile-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SegmentAnythingMobile-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FB7E392B55801600BE552C /* SegmentAnythingMobile_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnythingMobile_iOSApp.swift; sourceTree = "<group>"; };
 		18FB7E3B2B55801600BE552C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		18FB7E3D2B55801700BE552C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18FB7E4A2B567E0900BE552C /* ImageEncoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = ImageEncoder.mlpackage; sourceTree = "<group>"; };
-		18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = dense_embeddings.bin; sourceTree = "<group>"; };
 		18FB7E4E2B56EDAD00BE552C /* MaskDecoder.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = MaskDecoder.mlpackage; sourceTree = "<group>"; };
 		18FB7E502B591E0A00BE552C /* image_embeddings.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = image_embeddings.bin; sourceTree = "<group>"; };
 		18FB7E522B5920FA00BE552C /* SegmentAnything.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnything.swift; sourceTree = "<group>"; };
-		18FB7E542B592BD000BE552C /* postprocessing.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = postprocessing.metal; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,10 +142,8 @@
 				18FB7E582B5931FD00BE552C /* Metal */,
 				18FB7E572B5931E800BE552C /* Resources */,
 				18FB7E562B5931DA00BE552C /* Models */,
-				18D814D42B4EAF4B0018694F /* PromptEncoderS.swift */,
 				1822405A2B554FCE00B849F5 /* ImageProcessor.swift */,
 				18FB7E522B5920FA00BE552C /* SegmentAnything.swift */,
-				182240582B554CC900B849F5 /* Preprocessing-Bridging-Header.h */,
 			);
 			path = SAM;
 			sourceTree = "<group>";
@@ -212,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				18FB7E502B591E0A00BE552C /* image_embeddings.bin */,
-				18FB7E4C2B56D6F400BE552C /* dense_embeddings.bin */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -220,8 +215,10 @@
 		18FB7E582B5931FD00BE552C /* Metal */ = {
 			isa = PBXGroup;
 			children = (
-				1822405C2B556F7D00B849F5 /* preprocessing.metal */,
-				18FB7E542B592BD000BE552C /* postprocessing.metal */,
+				184008C42B5E6C8F00F95742 /* image_processor.ir */,
+				184008C52B5E6C8F00F95742 /* image_processor.metallib */,
+				184008BF2B5E6A3E00F95742 /* image_processor.metal */,
+				184008C22B5E6A8800F95742 /* ImageProcessor-Bridging-Header.h */,
 			);
 			path = Metal;
 			sourceTree = "<group>";
@@ -233,6 +230,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				184008C32B5E6A8800F95742 /* ImageProcessor-Bridging-Header.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18FB7E512B591E0A00BE552C /* image_embeddings.bin in Resources */,
-				18FB7E4D2B56D6F400BE552C /* dense_embeddings.bin in Resources */,
+				184008C72B5E6C8F00F95742 /* image_processor.metallib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,14 +367,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1820BFDF2B51BCE7004FBD8F /* PromptEncoderS.swift in Sources */,
 				18FB7E4F2B56EDAD00BE552C /* MaskDecoder.mlpackage in Sources */,
-				18FB7E552B592BD000BE552C /* postprocessing.metal in Sources */,
 				18FB7E532B5920FA00BE552C /* SegmentAnything.swift in Sources */,
 				1836782F2B5AD2C4008AD1D9 /* PromptEncoder.mlpackage in Sources */,
 				18FB7E4B2B567E0900BE552C /* ImageEncoder.mlpackage in Sources */,
+				184008C02B5E6A3E00F95742 /* image_processor.metal in Sources */,
 				1822405B2B554FCE00B849F5 /* ImageProcessor.swift in Sources */,
-				1822405D2B556F7D00B849F5 /* preprocessing.metal in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,11 +442,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_MODULE_VERIFIER = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"ENABLE_METAL_CAPTURE=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -467,13 +459,14 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				MTL_HEADER_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = aletos.dev.SAM;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Preprocessing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Metal/ImageProcessor-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -508,13 +501,14 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				MTL_HEADER_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = aletos.dev.SAM;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Preprocessing-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(TARGET_NAME)/Metal/ImageProcessor-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
