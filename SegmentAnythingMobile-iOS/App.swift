@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct SegmentAnythingMobile_iOSApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+struct SAMApp: App {
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
     }
+  }
 }

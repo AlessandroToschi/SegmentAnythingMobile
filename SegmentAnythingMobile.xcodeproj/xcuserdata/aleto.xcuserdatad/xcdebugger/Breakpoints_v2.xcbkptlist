@@ -207,22 +207,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6DA20FC6-D278-4A72-B58D-7B750688BFB2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D3D5C221-6573-484D-BAFF-E1E9F208E21C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -314,6 +298,223 @@
             endingLineNumber = "93"
             landmarkName = "predictMasks(points:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - 66710306c211e0a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 1 of SegmentAnythingMobile_iOS.ImageView.init(size: __C.CGSize, initialScale: __C.CGSize, scale: __C.CGSize, offset: __C.CGSize, lastTouch: Swift.Optional&lt;__C.CGSize&gt;) -&gt; SegmentAnythingMobile_iOS.ImageView"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - e6c5df5892bf92d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of SegmentAnythingMobile_iOS.ImageView.initialScale : __C.CGSize"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - 4c465de3d573f691"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.initialScale.getter : __C.CGSize"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - 8e1f27b69f09612f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.initialScale.setter : __C.CGSize"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - e533c4356b94002e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.initialScale.modify : __C.CGSize"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - d1628f058e93dc34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.initialScale.modify : __C.CGSize with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - fdfab4a0b91ffe47"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.$initialScale.getter : SwiftUI.Binding&lt;__C.CGSize&gt;"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - 5a873d9c029d10ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;, Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SegmentAnythingMobile_iOS.ContentView.body.getter : some"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "E089E52C-CD33-4EB7-8689-56435FA4DD92 - afd85620ae894ea5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #3 (Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;, Swift.Optional&lt;_PhotosUI_SwiftUI.PhotosPickerItem&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SegmentAnythingMobile_iOS.ContentView.body.getter : some"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "292">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "reset()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40 - 98029173a340045f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.reset() -&gt; ()"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "228">
+               </Location>
+               <Location
+                  uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40 - 98029173a340047e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.ImageView.reset() -&gt; ()"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "220">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4CEA0768-B30A-45A8-8407-A8371A1F7717"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
