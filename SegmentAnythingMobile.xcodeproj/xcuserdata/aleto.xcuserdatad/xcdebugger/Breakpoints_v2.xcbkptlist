@@ -456,47 +456,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40"
+            uuid = "A79A913C-2CC1-4720-AE05-CF3B0C08AA72"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "reset()"
-            landmarkType = "7">
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "body"
+            landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40 - 98029173a340045f"
+                  uuid = "A79A913C-2CC1-4720-AE05-CF3B0C08AA72 - 9c7d5f28c83f39af"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SegmentAnythingMobile_iOS.ImageView.reset() -&gt; ()"
+                  symbolName = "closure #1 (inout SwiftUI.GraphicsContext, __C.CGSize) -&gt; () in SegmentAnythingMobile_iOS.CanvasView.body.getter : some"
                   moduleName = "SegmentAnythingMobile-iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "228">
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
-                  uuid = "288732D1-1D03-4CC0-98B2-C6B9AA8BDD40 - 98029173a340047e"
+                  uuid = "A79A913C-2CC1-4720-AE05-CF3B0C08AA72 - 9c7d5f28c83f39ed"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SegmentAnythingMobile_iOS.ImageView.reset() -&gt; ()"
+                  symbolName = "closure #1 (inout SwiftUI.GraphicsContext, __C.CGSize) -&gt; () in SegmentAnythingMobile_iOS.CanvasView.body.getter : some"
                   moduleName = "SegmentAnythingMobile-iOS"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "220">
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "336">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -504,15 +504,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4CEA0768-B30A-45A8-8407-A8371A1F7717"
+            uuid = "477D695D-AA12-4BFD-BD14-EEE259368519"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "reset()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "477D695D-AA12-4BFD-BD14-EEE259368519 - 786ac82a08eb5ad2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.CanvasView.reset() -&gt; ()"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "477D695D-AA12-4BFD-BD14-EEE259368519 - 786ac82a08eb5a90"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SegmentAnythingMobile_iOS.CanvasView.reset() -&gt; ()"
+                  moduleName = "SegmentAnythingMobile-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "193"
+                  endingLineNumber = "193"
+                  offsetFromSymbolStart = "252">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFFD7FD8-C702-4FD0-A7A1-6FF7070093BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FFCCD25-5D2F-4A1D-897E-9C1D35195466"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SegmentAnythingMobile-iOS/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

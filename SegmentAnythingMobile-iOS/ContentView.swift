@@ -20,14 +20,14 @@ struct ContentView: View {
         Group {
           if let selectedImage {
             GeometryReader { geometry in
-              ImageView(
+              CanvasView(
                 size: geometry.size,
                 image: selectedImage
               )
-              
-            }.coordinateSpace(name: "canvas")
+            }
           } else {
             Text("Select a photo to start...")
+
           }
         }
         .padding()
@@ -56,85 +56,87 @@ struct ContentView: View {
   }
 }
 
-struct ImageView: View {
+struct CanvasView: View {
   let size: CGSize
   let image: UIImage
   
-  @State var initialScale: CGSize = CGSize(width: 1.0, height: 1.0)
-  @State var scale: CGSize = CGSize(width: 1.0, height: 1.0)
-  @State var offset: CGSize = CGSize.zero
+  @State private var initialScale: CGPoint = CGPoint.zero
+  @State private var scale: CGPoint = CGPoint.zero
+  @State private var traslation: CGPoint = CGPoint.zero
   
-  @State var lastTouch: CGSize?
-  @State var lastScale: CGFloat?
-  @State var anchorPoint: UnitPoint?
+  @State private var lastTouch: CGPoint?
+  @State private var lastScale: CGFloat?
   
   var body: some View {
-    Image(uiImage: image)
-      .frame(width: self.image.size.width, height: self.image.size.height)
-      .scaleEffect(
-        self.scale,
-        anchor: .topLeading
-      )
-      .offset(self.offset)
-      .gesture(
-        DragGesture()
-          .onChanged({
-            value in
-            if self.lastTouch == nil {
-              self.lastTouch = value.translation
-            }
-            self.offset.width += value.translation.width - self.lastTouch!.width
-            self.offset.height += value.translation.height - self.lastTouch!.height
-            self.lastTouch = value.translation
-          })
-          .onEnded({ _ in
-            self.lastTouch = nil
-          })
-      )
-      .gesture(
-        MagnifyGesture()
-          .onChanged({
-            value in
-            if self.lastScale == nil {
-              self.lastScale = value.magnification
-            }
-            if self.anchorPoint == nil {
-              self.anchorPoint = value.startAnchor
-            }
-            let delta = value.magnification - self.lastScale!
-            self.scale.width += delta
-            self.scale.height += delta
-                        
-            self.scale.width = min(
-              5.0 * self.initialScale.width,
-              max(self.initialScale.width, self.scale.width)
-            )
-            self.scale.height = min(
-              5.0 * self.initialScale.height,
-              max(self.initialScale.height, self.scale.height)
-            )
-
+    Canvas {
+      graphicsContext, size in
+      
+      graphicsContext.fill(Path(CGRect(origin: .zero, size: size)), with: .color(.gray))
+            
+      graphicsContext.translateBy(x: self.traslation.x, y: self.traslation.y)
+      graphicsContext.scaleBy(x: self.scale.x, y: self.scale.y)
+      
+      graphicsContext.draw(Image(uiImage: self.image), at: .zero, anchor: .topLeading)
+    }
+    .id(self.image)
+    .id(self.size)
+    .onChange(of: self.image) { _, _ in self.reset() }
+    .onChange(of: self.size) { _, _ in self.reset() }
+    .onAppear(perform: self.reset)
+    .onTapGesture(count: 2, perform: self.reset)
+    .gesture(
+      DragGesture()
+        .onChanged({
+          value in
+          if self.lastTouch == nil {
+            self.lastTouch = value.translation.asPoint()
+          }
+          self.traslation.x += value.translation.width - self.lastTouch!.x
+          self.traslation.y += value.translation.height - self.lastTouch!.y
+          self.lastTouch = value.translation.asPoint()
+        })
+        .onEnded({ _ in self.lastTouch = nil })
+    )
+    .gesture(
+      MagnifyGesture()
+        .onChanged({
+          value in
+          if self.lastScale == nil {
             self.lastScale = value.magnification
-          })
-          .onEnded({_ in
-            self.lastScale = nil
-            self.anchorPoint = nil
-          })
-      )
-      .onTapGesture(count: 2) {
-        self.reset()
-      }
-      .onChange(of: self.size) {
-        _, _ in
-        self.reset()
-      }
-      .onChange(of: self.image) {
-        _, _ in
-        self.reset()
-      }
-      .onAppear() {
-        self.reset()
-      }
+          }
+        
+          let anchorPoint = CGPoint(
+            x: self.size.width * value.startAnchor.x,
+            y: self.size.height * value.startAnchor.y
+          )
+          
+          let delta = value.magnification - self.lastScale!
+          
+          let currentTransform = CGAffineTransform(
+            a: self.scale.x,
+            b: 0.0,
+            c: 0.0,
+            d: self.scale.y,
+            tx: self.traslation.x,
+            ty: self.traslation.y
+          )
+          
+          var scaleTransform = CGAffineTransformIdentity
+          scaleTransform = scaleTransform.translatedBy(x: anchorPoint.x, y: anchorPoint.y)
+          scaleTransform = scaleTransform.scaledBy(x: 1.0 + delta, y: 1.0 + delta)
+          scaleTransform = scaleTransform.translatedBy(x: -anchorPoint.x, y: -anchorPoint.y)
+          
+          let newTransform = currentTransform.concatenating(scaleTransform)
+          
+          self.scale.x = newTransform.a
+          self.scale.y = newTransform.d
+          self.traslation.x = newTransform.tx
+          self.traslation.y = newTransform.ty
+          
+          self.lastScale = value.magnification
+        })
+        .onEnded({ _ in self.lastScale = nil })
+    )
   }
   
   func reset() {
@@ -142,14 +144,14 @@ struct ImageView: View {
       self.size.width / self.image.size.width,
       self.size.height / self.image.size.height
     )
-    self.scale = CGSize(
-      width: scale, //self.size.width / self.image.size.width,
-      height: scale //self.size.height / self.image.size.height
+    self.scale = CGPoint(
+      x: scale,
+      y: scale
     )
     self.initialScale = self.scale
-    self.offset = CGSize(
-      width: (self.size.width - (self.image.size.width * scale)) / 2.0,
-      height: (self.size.height - (self.image.size.height * scale)) / 2.0
+    self.traslation = CGPoint(
+      x: (self.size.width - (self.image.size.width * scale)) / 2.0,
+      y: (self.size.height - (self.image.size.height * scale)) / 2.0
     )
   }
 }
@@ -167,3 +169,17 @@ struct ImageView: View {
  )
  }
  */
+
+extension CGSize: Hashable {
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(self.width)
+    hasher.combine(self.height)
+  }
+  
+  public func asPoint() -> CGPoint {
+    return CGPoint(
+      x: self.width,
+      y: self.height
+    )
+  }
+}
