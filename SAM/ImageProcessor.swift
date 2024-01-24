@@ -43,8 +43,14 @@ class ImageProcessor {
   }
   
   func load() {
+#if os(iOS)
+    let libraryName = "image_processor_ios"
+#elseif os(macOS)
+    let libraryName = "image_processor_macos"
+#endif
+    
     let libraryUrl = Bundle(for: Self.self).url(
-      forResource: "image_processor",
+      forResource: libraryName,
       withExtension: "metallib"
     )!
     
