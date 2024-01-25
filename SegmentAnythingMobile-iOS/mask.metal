@@ -20,7 +20,10 @@ kernel void mask_kernel(texture2d<float, access::read> image [[ texture(0) ]],
   
   const float mask_value = mask.read(xy).x;
   float4 output_color = (addictive == (mask_value > 0.0f)) ? image.read(xy) : float4(0.0);
-  output_color.a *= mask_value;
+  
+  if (addictive) {
+    output_color.a *= mask_value;
+  }
   
   output.write(output_color, xy);
 }

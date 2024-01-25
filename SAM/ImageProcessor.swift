@@ -186,6 +186,12 @@ class ImageProcessor {
     
     var outputMasks = [MTLTexture]()
     
+    //let captureDescriptor = MTLCaptureDescriptor()
+    //captureDescriptor.captureObject = commandQueue
+    //
+    //let captureDevice = MTLCaptureManager.shared()
+    //try! captureDevice.startCapture(with: captureDescriptor)
+    
     let commandBuffer = commandQueue.makeCommandBuffer()!
     
     let threadgroupSize = MTLSize(
@@ -294,9 +300,15 @@ class ImageProcessor {
     
     computeCommandEncoder.endEncoding()
     
+    let gaussianFilter = MPSImageGaussianBlur(device: self.device, sigma: 5)
+    
+    for maskIndex in 0 ..< outputMasks.count {
+      gaussianFilter.encode(commandBuffer: commandBuffer, inPlaceTexture: &outputMasks[maskIndex])
+    }
+    
     commandBuffer.commit()
     commandBuffer.waitUntilCompleted()
-    
+        
     return outputMasks
   }
   

@@ -20,7 +20,6 @@ class MaskProcessor {
   
   private var commandQueue: MTLCommandQueue!
   private var maskComputePipelineState: MTLComputePipelineState!
-  private var context: CIContext!
   
   init(device: MTLDevice) {
     self.device = device
@@ -28,23 +27,23 @@ class MaskProcessor {
   
   func load() {
     self.commandQueue = self.device.makeCommandQueue()!
+    self.commandQueue.label = "MaskProcessor"
+    print(Unmanaged.passUnretained(self.commandQueue!).toOpaque())
     
     let library = self.device.makeDefaultLibrary()!
     let maskKernelFunction = library.makeFunction(name: "mask_kernel")!
     
     self.maskComputePipelineState = try! self.device.makeComputePipelineState(function: maskKernelFunction)
-    
-    self.context = CIContext(mtlDevice: self.device)
   }
   
   func apply(input: MTLTexture, mask: MTLTexture, mode: Mode) -> MTLTexture {
     assert(input.width == mask.width)
     assert(input.height == mask.height)
     
-    let captureDescriptor = MTLCaptureDescriptor()
-    captureDescriptor.captureObject = self.commandQueue
-    
-    let captureDevice = MTLCaptureManager.shared()
+    //let captureDescriptor = MTLCaptureDescriptor()
+    //captureDescriptor.captureObject = self.commandQueue
+    //
+    //let captureDevice = MTLCaptureManager.shared()
     //try! captureDevice.startCapture(with: captureDescriptor)
     
     let outputTextureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
@@ -99,6 +98,8 @@ class MaskProcessor {
     
     commandBuffer.commit()
     commandBuffer.waitUntilCompleted()
+    
+    //captureDevice.stopCapture()
     
     return outputTexture
   }
