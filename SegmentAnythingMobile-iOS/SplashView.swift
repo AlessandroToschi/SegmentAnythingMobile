@@ -27,7 +27,7 @@ struct SplashView: View {
         self.titleOpacity = 0.0
       }
     }
-    .task(priority: .background, self.initializationAction)
+    .task(priority: .high, self.initializationAction)
   }
 }
 

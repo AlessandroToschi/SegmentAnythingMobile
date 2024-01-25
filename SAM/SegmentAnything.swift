@@ -9,7 +9,7 @@ import Foundation
 import Metal
 import CoreML
 
-public struct Point {
+public struct Point: Equatable {
   var x: Float
   var y: Float
   var label: Int
@@ -26,7 +26,8 @@ public struct Point {
 }
 
 public class SegmentAnything {
-  private let device: MTLDevice
+  public let device: MTLDevice
+  
   private let commandQueue: MTLCommandQueue
   private let imageProcessor: ImageProcessor
   
@@ -41,7 +42,7 @@ public class SegmentAnything {
   private var denseEmbeddings: MLMultiArray!
   
   private var maskDecoder: MaskDecoder!
-  
+    
   public init(device: MTLDevice) {
     self.device = device
     self.commandQueue = device.makeCommandQueue()!

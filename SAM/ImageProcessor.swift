@@ -43,9 +43,11 @@ class ImageProcessor {
   }
   
   func load() {
-#if os(iOS)
+#if os(iOS) && !targetEnvironment(simulator)
     let libraryName = "image_processor_ios"
-#elseif os(macOS)
+#elseif os(iOS) && targetEnvironment(simulator)
+    let libraryName = "image_processor_ios_sim"
+#elseif os(macOS) || targetEnvironment(simulator)
     let libraryName = "image_processor_macos"
 #endif
     
@@ -242,15 +244,33 @@ class ImageProcessor {
       let maskStride = strides[1]
       
       for maskIndex in 0 ..< masks.shape[1].intValue {
+        let maskTexture: MTLTexture
+#if os(iOS) && targetEnvironment(simulator)
+        maskTexture = self.device.makeTexture(descriptor: maskTextureDescriptor)!
+        maskTexture.replace(
+          region: MTLRegion(
+            origin: MTLOrigin(x: 0, y: 0, z: 0),
+            size: MTLSize(
+              width: maskTexture.width,
+              height: maskTexture.height,
+              depth: 1
+            )
+          ),
+          mipmapLevel: 0,
+          withBytes: maskPointer + maskIndex * maskStride,
+          bytesPerRow: strides[2] * MemoryLayout<Float>.stride
+        )
+#else
         let maskBuffer = self.device.makeBuffer(
           bytesNoCopy: maskPointer + maskIndex * maskStride,
           length: maskStride * MemoryLayout<Float>.stride
         )!
-        let maskTexture = maskBuffer.makeTexture(
+        maskTexture = maskBuffer.makeTexture(
           descriptor: maskTextureDescriptor,
           offset: 0,
           bytesPerRow: strides[2] * MemoryLayout<Float>.stride
         )!
+#endif
         let outputMaskTexture = self.device.makeTexture(descriptor: outputMaskTextureDescriptor)!
         
         computeCommandEncoder.setTexture(maskTexture, index: 0)
@@ -304,7 +324,11 @@ class ImageProcessor {
   
   func loadTensor(tensorName: String, tensorExtension: String = "bin", shape: [Int]) -> MLMultiArray {
     let count = shape.reduce(1, *)
-    let strides = shape.reduce([Int](), { return $0 + [($0.last ?? 1) * $1] }).reversed()
+    var strides = [Int](repeating: 1, count: shape.count)
+    
+    for i in stride(from: shape.count - 2, through: 0, by: -1) {
+      strides[i] = shape[i + 1] * strides[i + 1]
+    }
     
     let tensorUrl = Bundle(for: Self.self).url(
       forResource: tensorName,
@@ -320,7 +344,7 @@ class ImageProcessor {
       dataPointer: tensorPointer,
       shape: shape as [NSNumber],
       dataType: .float32,
-      strides: strides.reversed() as [NSNumber],
+      strides: strides as [NSNumber],
       deallocator: { $0.deallocate() }
     )
   }

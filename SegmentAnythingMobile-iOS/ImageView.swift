@@ -92,6 +92,8 @@ struct ImageView: View {
         
         let imageLongPressPoint = self.longPressTouch.applying(currentTransform.inverted())
         
+        print(imageLongPressPoint)
+        
         self.onLongPressAction(imageLongPressPoint)
       }
   }

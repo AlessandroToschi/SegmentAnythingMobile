@@ -45,7 +45,8 @@ kernel void postprocessing_kernel(texture2d<float, access::sample> mask [[ textu
   
   const float2 uv = float2(xy) / float2(output.get_width(), output.get_height());
   const float2 mask_uv = uv * input.scaleSizeFactor;
-  const float4 mask_value = 1.0f - step(mask.sample(linear_sampler, mask_uv), 0.0f);
+  
+  const float4 mask_value = 1.0f - clamp(mask.sample(linear_sampler, mask_uv), float4(0.0), float4(1.0));
   
   output.write(mask_value, xy);
 }
