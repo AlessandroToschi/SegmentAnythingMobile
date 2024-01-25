@@ -16,18 +16,22 @@ struct SplashView: View {
   
   var body: some View {
     VStack {
+      Spacer()
       Text(SplashView.title)
         .font(.largeTitle)
         .opacity(self.titleOpacity)
         .transition(.opacity)
+      Spacer()
       ProgressView().progressViewStyle(.circular).controlSize(.extraLarge)
-    }
-    .onAppear() {
+    }.padding()
+
+    .task(priority: .high, self.initializationAction)
+    .task {
+      try? await Task.sleep(nanoseconds: 500_000_000)
       withAnimation(Animation.easeOut(duration: 1.5).repeatForever(autoreverses: true)) {
         self.titleOpacity = 0.0
       }
     }
-    .task(priority: .high, self.initializationAction)
   }
 }
 

@@ -678,69 +678,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "667D170E-92E6-4FAF-A8D3-F9F95C48C9BC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "body"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "667D170E-92E6-4FAF-A8D3-F9F95C48C9BC - 2439b244bdf23c17"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #4 (Swift.Array&lt;SAM.Point&gt;, Swift.Array&lt;SAM.Point&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SegmentAnythingMobile_iOS.SegmentAnythingView.body.getter : some"
-                  moduleName = "SegmentAnythingMobile-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "712">
-               </Location>
-               <Location
-                  uuid = "667D170E-92E6-4FAF-A8D3-F9F95C48C9BC - 2439b244bdf23c17"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #4 (Swift.Array&lt;SAM.Point&gt;, Swift.Array&lt;SAM.Point&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SegmentAnythingMobile_iOS.SegmentAnythingView.body.getter : some"
-                  moduleName = "SegmentAnythingMobile-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "127"
-                  endingLineNumber = "127"
-                  offsetFromSymbolStart = "776">
-               </Location>
-               <Location
-                  uuid = "667D170E-92E6-4FAF-A8D3-F9F95C48C9BC - 2439b244bdf23f93"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #4 (Swift.Array&lt;SAM.Point&gt;, Swift.Array&lt;SAM.Point&gt;) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.onChange&lt;&#x3c4;_0_0 where &#x3c4;_1_0: Swift.Equatable&gt;(of: &#x3c4;_1_0, initial: Swift.Bool, _: (&#x3c4;_1_0, &#x3c4;_1_0) -&gt; ()) -&gt; some&gt;&gt;.0 in SegmentAnythingMobile_iOS.SegmentAnythingView.body.getter : some"
-                  moduleName = "SegmentAnythingMobile-iOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/aleto/Documents/experiments/SegmentAnythingMobile/SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "123"
-                  endingLineNumber = "123"
-                  offsetFromSymbolStart = "776">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F78D35E0-E11D-487D-BD54-771D9B4ED195"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -764,8 +701,8 @@
             filePath = "SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -812,8 +749,8 @@
             filePath = "SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>

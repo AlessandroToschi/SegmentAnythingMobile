@@ -17,6 +17,7 @@ struct SegmentAnythingView: View {
   @State private var masks: [UIImage] = []
   @State private var maskMode: MaskProcessor.Mode = .addictive
   @State private var source: Int = 0
+  @State private var isLoading = false
   
   let segmentAnything: SegmentAnything
   let maskProcessor: MaskProcessor
@@ -43,9 +44,7 @@ struct SegmentAnythingView: View {
   }
   
   var resetButton: some View {
-    Button("Reset") {
-      self.foregroundPoints.removeAll()
-    }
+    Button("Reset", action: self.reset)
   }
   
   var selectPhotoLabel: some View {
@@ -60,7 +59,7 @@ struct SegmentAnythingView: View {
       Image(systemName: "camera")
     }
   }
-    
+  
   var body: some View {
     NavigationStack {
       Group {
@@ -90,43 +89,67 @@ struct SegmentAnythingView: View {
           self.selectPhotoLabel
         }
       }
+      .overlay() {
+        if self.isLoading {
+          LoadingView()
+        }
+      }
       .navigationTitle("Segment Anything")
       .toolbar { self.photoPicker }
       .onChange(of: self.selectedPhotoItem) {
         _, _ in
         Task(priority: .high) {
+          self.isLoading = true
           guard let selectedPhotoItem,
                 let imageData = try? await selectedPhotoItem.loadTransferable(type: Data.self),
                 let image = UIImage(data: imageData)
           else { return }
           
-          self.foregroundPoints.removeAll()
-          self.masks.removeAll()
+          self.reset()
           
           self.selectedImage = image
           self.selectedImageTexture = try! await self.textureLoader.loadTexture(uiImage: image)
           
           self.segmentAnything.preprocess(image: self.selectedImageTexture!)
+          self.isLoading = false
         }
       }
       .onChange(of: self.foregroundPoints) {
         _, _ in
         guard !self.foregroundPoints.isEmpty
         else { return }
-        Task(priority: .high) {
-          self.masks = self.segmentAnything.predictMasks(
-            points: self.foregroundPoints
-          ).map { (mask, iou) in
-            let maskTexture = self.maskProcessor.apply(
-              input: self.selectedImageTexture!,
-              mask: mask,
-              mode: self.maskMode
-            )
-            return self.textureLoader.unloadTexture(texture: maskTexture)
-          }
-          print("ipppo")
-        }
+        Task(priority: .high, operation: self.predictMasks)
+      }
+      .onChange(of: self.maskMode) {
+        _, _ in
+        guard !self.foregroundPoints.isEmpty,
+              !self.masks.isEmpty
+        else { return }
+        Task(priority: .high, operation: self.predictMasks)
       }
     }
+  }
+  
+  func reset() {
+    self.foregroundPoints.removeAll()
+    self.masks.removeAll()
+  }
+  
+  @Sendable
+  func predictMasks() async {
+    self.isLoading = true
+    try! await Task.sleep(nanoseconds: 1_000_000_000)
+    self.masks = self.segmentAnything.predictMasks(
+      points: self.foregroundPoints
+    ).map {
+      (mask, iou) in
+      let maskTexture = self.maskProcessor.apply(
+        input: self.selectedImageTexture!,
+        mask: mask,
+        mode: self.maskMode
+      )
+      return self.textureLoader.unloadTexture(texture: maskTexture)
+    }
+    self.isLoading = false
   }
 }

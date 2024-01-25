@@ -24,6 +24,7 @@
 		18982E8A2B625C4A00D2C90E /* image_processor_ios_sim.metallib in Resources */ = {isa = PBXBuildFile; fileRef = 18982E882B625C4A00D2C90E /* image_processor_ios_sim.metallib */; };
 		18982E8B2B625C4A00D2C90E /* image_processor_ios_sim.ir in Resources */ = {isa = PBXBuildFile; fileRef = 18982E892B625C4A00D2C90E /* image_processor_ios_sim.ir */; };
 		18982E8D2B626A9D00D2C90E /* TextureLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E8C2B626A9D00D2C90E /* TextureLoader.swift */; };
+		18982E8F2B62AC6200D2C90E /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18982E8E2B62AC6200D2C90E /* LoadingView.swift */; };
 		18FB7E3A2B55801600BE552C /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E392B55801600BE552C /* App.swift */; };
 		18FB7E3C2B55801600BE552C /* SegmentAnythingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FB7E3B2B55801600BE552C /* SegmentAnythingView.swift */; };
 		18FB7E3E2B55801700BE552C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18FB7E3D2B55801700BE552C /* Assets.xcassets */; };
@@ -107,6 +108,7 @@
 		18982E882B625C4A00D2C90E /* image_processor_ios_sim.metallib */ = {isa = PBXFileReference; lastKnownFileType = "archive.metal-library"; path = image_processor_ios_sim.metallib; sourceTree = "<group>"; };
 		18982E892B625C4A00D2C90E /* image_processor_ios_sim.ir */ = {isa = PBXFileReference; lastKnownFileType = file; path = image_processor_ios_sim.ir; sourceTree = "<group>"; };
 		18982E8C2B626A9D00D2C90E /* TextureLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureLoader.swift; sourceTree = "<group>"; };
+		18982E8E2B62AC6200D2C90E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		18FB7E372B55801600BE552C /* SegmentAnythingMobile-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SegmentAnythingMobile-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18FB7E392B55801600BE552C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		18FB7E3B2B55801600BE552C /* SegmentAnythingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentAnythingView.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				18982E842B61768900D2C90E /* mask.metal */,
 				18982E862B61798200D2C90E /* MaskProcessor.swift */,
 				18982E8C2B626A9D00D2C90E /* TextureLoader.swift */,
+				18982E8E2B62AC6200D2C90E /* LoadingView.swift */,
 			);
 			path = "SegmentAnythingMobile-iOS";
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				18982E8D2B626A9D00D2C90E /* TextureLoader.swift in Sources */,
 				18FB7E3C2B55801600BE552C /* SegmentAnythingView.swift in Sources */,
 				180259B52B6119BE00E46B70 /* SplashView.swift in Sources */,
+				18982E8F2B62AC6200D2C90E /* LoadingView.swift in Sources */,
 				18FB7E3A2B55801600BE552C /* App.swift in Sources */,
 				18982E872B61798200D2C90E /* MaskProcessor.swift in Sources */,
 			);
