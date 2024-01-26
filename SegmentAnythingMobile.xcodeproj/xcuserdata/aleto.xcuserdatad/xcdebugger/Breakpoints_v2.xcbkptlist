@@ -447,8 +447,8 @@
             filePath = "SegmentAnythingMobile-iOS/ImageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -637,9 +637,9 @@
             filePath = "SegmentAnythingMobile-iOS/ImageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "init(size:image:foregroundPoints:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "init(size:image:mask:opacity:foregroundPoints:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -653,8 +653,8 @@
             filePath = "SegmentAnythingMobile-iOS/SegmentAnythingView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>
@@ -914,8 +914,8 @@
             filePath = "SegmentAnythingMobile-iOS/ImageView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
             landmarkName = "body"
             landmarkType = "24">
             <Locations>

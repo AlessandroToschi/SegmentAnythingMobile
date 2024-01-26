@@ -18,6 +18,7 @@ struct SegmentAnythingView: View {
   @State private var maskMode: MaskProcessor.Mode = .addictive
   @State private var source: Int = 0
   @State private var isLoading = false
+  @State private var opacity = 0.0
   
   let segmentAnything: SegmentAnything
   let maskProcessor: MaskProcessor
@@ -50,13 +51,23 @@ struct SegmentAnythingView: View {
   }
   
   var selectPhotoLabel: some View {
-    Text("Select a photo to start...")
+    HStack {
+      Spacer()
+      Text("Select a photo to start...")
+      Spacer()
+    }
   }
   
   var photoPicker: some View {
     PhotosPicker(
       selection: self.$selectedPhotoItem,
-      matching: .any(of: [.images, .not(.livePhotos)])
+      matching: .all(
+        of: [
+          .images,
+          .not(.livePhotos),
+          .not(.videos)
+        ]
+      )
     ) {
       Image(systemName: "camera")
     }
@@ -75,6 +86,26 @@ struct SegmentAnythingView: View {
     }
   }
   
+  var opacitySlider: some View {
+    VStack{
+      HStack {
+        Text("Source image opacity: \(Int(self.opacity * 100))")
+        Spacer()
+      }
+      Slider(
+        value: self.$opacity,
+        in: 0.0 ... 1.0
+      ) {
+        Text("Source image opacity")
+      } minimumValueLabel: {
+        Text("0")
+      } maximumValueLabel: {
+        Text("100")
+      }
+    }
+    .disabled(self.masks.isEmpty)
+  }
+  
   var body: some View {
     NavigationStack {
       Group {
@@ -86,11 +117,15 @@ struct SegmentAnythingView: View {
             GeometryReader { geometry in
               ImageView(
                 size: geometry.size,
-                image: self.source == 0 ? selectedImage : self.masks[self.source - 1],
+                image: selectedImage,
+                mask: self.source == 0 ? nil : self.masks[self.source - 1],
+                opacity: self.$opacity,
                 foregroundPoints: self.$foregroundPoints
               )
             }
+            .border(.black)
             .clipped()
+            self.opacitySlider
             self.resetButton
           }
           else {
@@ -148,6 +183,9 @@ struct SegmentAnythingView: View {
   func reset() {
     self.foregroundPoints.removeAll()
     self.masks.removeAll()
+    self.maskMode = .addictive
+    self.source = 0
+    self.opacity = 0.0
   }
   
   @Sendable

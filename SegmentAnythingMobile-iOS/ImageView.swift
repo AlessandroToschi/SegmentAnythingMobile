@@ -12,6 +12,8 @@ import SAM
 struct ImageView: View {
   let size: CGSize
   let image: UIImage
+  let mask: UIImage?
+  @Binding var opacity: Double
   @Binding var foregroundPoints: [Point]
   
   @State private var initialScale: CGPoint = CGPoint.zero
@@ -25,12 +27,17 @@ struct ImageView: View {
   init(
     size: CGSize,
     image: UIImage,
+    mask: UIImage?,
+    opacity: Binding<Double>,
     foregroundPoints: Binding<[Point]>
   ) {
     self.size = size
     self.image = image
+    self.mask = mask
+    
+    self._opacity = opacity
     self._foregroundPoints = foregroundPoints
-
+    
     let scale = min(
       self.size.width / self.image.size.width,
       self.size.height / self.image.size.height
@@ -114,13 +121,24 @@ struct ImageView: View {
   var body: some View {
     Canvas {
       graphicsContext, size in
-            
+      
       graphicsContext.translateBy(x: self.traslation.x, y: self.traslation.y)
       graphicsContext.scaleBy(x: self.scale.x, y: self.scale.y)
       
+      if self.mask != nil {
+        graphicsContext.opacity = self.opacity
+      }
+      
       graphicsContext.draw(Image(uiImage: self.image), at: .zero, anchor: .topLeading)
       
-      let circleRadius = 8.0 / self.scale.x
+      graphicsContext.opacity = 1.0
+      
+      if let mask {
+        graphicsContext.draw(Image(uiImage: mask), at: .zero, anchor: .topLeading)
+      }
+      
+      let circleRadius = 5.0 / self.scale.x
+      let circleDiameter = circleRadius * 2.0
       
       for foregroundPoint in self.foregroundPoints {
         let circleOrigin = CGPoint(
@@ -132,8 +150,8 @@ struct ImageView: View {
             ellipseIn: CGRect(
               origin: circleOrigin,
               size: CGSize(
-                width: circleRadius * 2.0,
-                height: circleRadius * 2.0
+                width: circleDiameter,
+                height: circleDiameter
               )
             )
           ),
@@ -149,27 +167,29 @@ struct ImageView: View {
     .onTapGesture(count: 2, perform: self.reset)
     .gesture(self.dragGesture)
     .gesture(self.scaleGesture)
-    .dropDestination(for: String.self) {
-      _, location in
-      
-      let currentTransform = self.currentTransform
-      let imageRect = CGRect(origin: .zero, size: self.image.size)
-      let transformedImageRect = imageRect.applying(currentTransform)
-      
-      guard transformedImageRect.contains(location)
-      else { return true }
-      
-      let imagePinPoint = location.applying(currentTransform.inverted())
-      
-      self.foregroundPoints.append(
-        Point(
-          x: Float(imagePinPoint.x),
-          y: Float(imagePinPoint.y),
-          label: 1
+    .if(self.mask == nil) { view in
+      view.dropDestination(for: String.self) {
+        _, location in
+        
+        let currentTransform = self.currentTransform
+        let imageRect = CGRect(origin: .zero, size: self.image.size)
+        let transformedImageRect = imageRect.applying(currentTransform)
+        
+        guard transformedImageRect.contains(location)
+        else { return true }
+        
+        let imagePinPoint = location.applying(currentTransform.inverted())
+        
+        self.foregroundPoints.append(
+          Point(
+            x: Float(imagePinPoint.x),
+            y: Float(imagePinPoint.y),
+            label: 1
+          )
         )
-      )
-      
-      return true
+        
+        return true
+      }
     }
   }
   
@@ -201,5 +221,15 @@ extension CGSize: Hashable {
       x: self.width,
       y: self.height
     )
+  }
+}
+
+extension View {
+  @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+    if condition {
+      transform(self)
+    } else {
+      self
+    }
   }
 }
