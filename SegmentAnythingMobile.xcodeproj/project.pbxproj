@@ -208,13 +208,13 @@
 			children = (
 				18FB7E392B55801600BE552C /* App.swift */,
 				18FB7E3D2B55801700BE552C /* Assets.xcassets */,
-				18FB7E3B2B55801600BE552C /* SegmentAnythingView.swift */,
 				180259B22B61124400E46B70 /* ImageView.swift */,
-				180259B42B6119BE00E46B70 /* SplashView.swift */,
+				18982E8E2B62AC6200D2C90E /* LoadingView.swift */,
 				18982E842B61768900D2C90E /* mask.metal */,
 				18982E862B61798200D2C90E /* MaskProcessor.swift */,
+				18FB7E3B2B55801600BE552C /* SegmentAnythingView.swift */,
+				180259B42B6119BE00E46B70 /* SplashView.swift */,
 				18982E8C2B626A9D00D2C90E /* TextureLoader.swift */,
-				18982E8E2B62AC6200D2C90E /* LoadingView.swift */,
 			);
 			path = "SegmentAnythingMobile-iOS";
 			sourceTree = "<group>";

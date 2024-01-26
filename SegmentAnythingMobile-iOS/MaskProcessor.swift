@@ -28,7 +28,6 @@ class MaskProcessor {
   func load() {
     self.commandQueue = self.device.makeCommandQueue()!
     self.commandQueue.label = "MaskProcessor"
-    print(Unmanaged.passUnretained(self.commandQueue!).toOpaque())
     
     let library = self.device.makeDefaultLibrary()!
     let maskKernelFunction = library.makeFunction(name: "mask_kernel")!

@@ -10,9 +10,9 @@ import Metal
 import CoreML
 
 public struct Point: Equatable {
-  var x: Float
-  var y: Float
-  var label: Int
+  public var x: Float
+  public var y: Float
+  public var label: Int
   
   public init(
     x: Float,

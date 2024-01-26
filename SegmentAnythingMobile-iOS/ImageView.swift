@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import SAM
 
 struct ImageView: View {
   let size: CGSize
   let image: UIImage
-  let onLongPressAction: (CGPoint) -> ()
+  @Binding var foregroundPoints: [Point]
   
   @State private var initialScale: CGPoint = CGPoint.zero
   @State private var scale: CGPoint = CGPoint.zero
@@ -19,16 +20,16 @@ struct ImageView: View {
   
   @State private var lastTouch: CGPoint?
   @State private var lastScale: CGFloat?
-  @State private var longPressTouch: CGPoint = .zero
+  
   
   init(
     size: CGSize,
     image: UIImage,
-    onLongPressAction: @escaping (CGPoint) -> Void
+    foregroundPoints: Binding<[Point]>
   ) {
     self.size = size
     self.image = image
-    self.onLongPressAction = onLongPressAction
+    self._foregroundPoints = foregroundPoints
 
     let scale = min(
       self.size.width / self.image.size.width,
@@ -74,28 +75,8 @@ struct ImageView: View {
         self.traslation.y += value.translation.height - self.lastTouch!.y
         
         self.lastTouch = value.translation.asPoint()
-        
-        self.longPressTouch = value.location
       })
       .onEnded({ _ in self.lastTouch = nil })
-  }
-  
-  private var longPressGesture: some Gesture {
-    LongPressGesture(minimumDuration: 1.0)
-      .onEnded { _ in
-        let currentTransform = self.currentTransform
-        let imageRect = CGRect(origin: .zero, size: self.image.size)
-        let transformedImageRect = imageRect.applying(currentTransform)
-        
-        guard transformedImageRect.contains(self.longPressTouch)
-        else { return }
-        
-        let imageLongPressPoint = self.longPressTouch.applying(currentTransform.inverted())
-        
-        print(imageLongPressPoint)
-        
-        self.onLongPressAction(imageLongPressPoint)
-      }
   }
   
   private var scaleGesture: some Gesture {
@@ -133,13 +114,32 @@ struct ImageView: View {
   var body: some View {
     Canvas {
       graphicsContext, size in
-      
-      //graphicsContext.fill(Path(CGRect(origin: .zero, size: size)), with: .color(.gray))
-      
+            
       graphicsContext.translateBy(x: self.traslation.x, y: self.traslation.y)
       graphicsContext.scaleBy(x: self.scale.x, y: self.scale.y)
       
       graphicsContext.draw(Image(uiImage: self.image), at: .zero, anchor: .topLeading)
+      
+      let circleRadius = 8.0 / self.scale.x
+      
+      for foregroundPoint in self.foregroundPoints {
+        let circleOrigin = CGPoint(
+          x: Double(foregroundPoint.x) - circleRadius,
+          y: Double(foregroundPoint.y) - circleRadius
+        )
+        graphicsContext.fill(
+          Path(
+            ellipseIn: CGRect(
+              origin: circleOrigin,
+              size: CGSize(
+                width: circleRadius * 2.0,
+                height: circleRadius * 2.0
+              )
+            )
+          ),
+          with: .color(.blue)
+        )
+      }
     }
     .id(self.image)
     .id(self.size)
@@ -147,8 +147,30 @@ struct ImageView: View {
     .onChange(of: self.size) { _, _ in self.reset() }
     .onAppear(perform: self.reset)
     .onTapGesture(count: 2, perform: self.reset)
-    .gesture(self.longPressGesture.simultaneously(with: self.dragGesture))
+    .gesture(self.dragGesture)
     .gesture(self.scaleGesture)
+    .dropDestination(for: String.self) {
+      _, location in
+      
+      let currentTransform = self.currentTransform
+      let imageRect = CGRect(origin: .zero, size: self.image.size)
+      let transformedImageRect = imageRect.applying(currentTransform)
+      
+      guard transformedImageRect.contains(location)
+      else { return true }
+      
+      let imagePinPoint = location.applying(currentTransform.inverted())
+      
+      self.foregroundPoints.append(
+        Point(
+          x: Float(imagePinPoint.x),
+          y: Float(imagePinPoint.y),
+          label: 1
+        )
+      )
+      
+      return true
+    }
   }
   
   func reset() {

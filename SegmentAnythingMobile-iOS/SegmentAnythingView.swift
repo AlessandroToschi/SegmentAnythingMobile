@@ -29,6 +29,7 @@ struct SegmentAnythingView: View {
       Text("Subtract").tag(MaskProcessor.Mode.subtractive)
     }
     .pickerStyle(.segmented)
+    .disabled(self.masks.isEmpty)
   }
   
   var sourcePicker: some View {
@@ -41,6 +42,7 @@ struct SegmentAnythingView: View {
       }
     }
     .pickerStyle(.segmented)
+    .disabled(self.masks.isEmpty)
   }
   
   var resetButton: some View {
@@ -60,35 +62,45 @@ struct SegmentAnythingView: View {
     }
   }
   
+  var draggablePin: some View {
+    HStack {
+      Image(systemName: "pin")
+        .resizable()
+        .scaledToFit()
+        .frame(width: 32.0, height: 32.0)
+        .draggable("pin", preview: { EmptyView() })
+        .padding(.trailing, 20)
+      Text("Drop the pin into the image point you want to segment.")
+      Spacer()
+    }
+  }
+  
   var body: some View {
     NavigationStack {
       Group {
-        if let selectedImage {
-          VStack {
+        VStack {
+          if let selectedImage {
             self.maskModePicker
             self.sourcePicker
+            self.draggablePin
             GeometryReader { geometry in
               ImageView(
                 size: geometry.size,
-                image: self.source == 0 ? selectedImage : self.masks[self.source - 1]
-              ) { point in
-                self.foregroundPoints.append(
-                  Point(
-                    x: Float(point.x),
-                    y: Float(point.y),
-                    label: 1
-                  )
-                )
-              }
+                image: self.source == 0 ? selectedImage : self.masks[self.source - 1],
+                foregroundPoints: self.$foregroundPoints
+              )
             }
             .clipped()
             self.resetButton
           }
-          .padding()
-        } else {
-          self.selectPhotoLabel
+          else {
+            Spacer()
+            self.selectPhotoLabel
+            Spacer()
+          }
         }
       }
+      .padding([.leading, .trailing])
       .overlay() {
         if self.isLoading {
           LoadingView()
@@ -118,6 +130,9 @@ struct SegmentAnythingView: View {
         _, _ in
         guard !self.foregroundPoints.isEmpty
         else { return }
+#if targetEnvironment(simulator)
+        return
+#endif
         Task(priority: .high, operation: self.predictMasks)
       }
       .onChange(of: self.maskMode) {
@@ -138,7 +153,6 @@ struct SegmentAnythingView: View {
   @Sendable
   func predictMasks() async {
     self.isLoading = true
-    try! await Task.sleep(nanoseconds: 1_000_000_000)
     self.masks = self.segmentAnything.predictMasks(
       points: self.foregroundPoints
     ).map {

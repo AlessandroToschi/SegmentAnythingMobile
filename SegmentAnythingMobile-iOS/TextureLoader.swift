@@ -28,6 +28,29 @@ class TextureLoader {
     ), let cgImage = self.ciContext.createCGImage(ciImage, from: ciImage.extent)
     else { throw NSError() }
     
+    #if targetEnvironment(simulator)
+    let textureDescriptor = MTLTextureDescriptor.texture2DDescriptor(
+      pixelFormat: .bgra8Unorm,
+      width: Int(ciImage.extent.width),
+      height: Int(ciImage.extent.height),
+      mipmapped: false
+    )
+    textureDescriptor.usage = [.shaderRead, .shaderWrite]
+    textureDescriptor.storageMode = .shared
+    
+    let texture = self.textureLoader.device.makeTexture(descriptor: textureDescriptor)!
+    
+    self.ciContext.render(
+      ciImage,
+      to: texture,
+      commandBuffer: nil,
+      bounds: ciImage.extent,
+      colorSpace: ciContext.workingColorSpace ?? CGColorSpaceCreateDeviceRGB()
+    )
+    
+    return texture
+    #endif
+        
     return try await self.textureLoader.newTexture(
       cgImage: cgImage,
       options: [
