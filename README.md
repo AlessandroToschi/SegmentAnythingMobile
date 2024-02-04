@@ -1,18 +1,23 @@
 # The Idea
 
-![IMG_5102](https://github.com/AlessandroToschi/SegmentAnythingMobile/assets/6044244/982478da-2109-49c1-93b9-bf4763757cc9)
-
-Ginosa Marina (TA) - 01/01/2024
-
-During the Christmas holidays, I took the following photo and immediately thought that it would be cool to remove the people in the background as well as the wooden stick.
+<table>
+    <tr>
+        <td> 
+            <img align="center" src="https://github.com/AlessandroToschi/SegmentAnythingMobile/assets/6044244/982478da-2109-49c1-93b9-bf4763757cc9" width=400/>
+        </td>
+        <td>
+          During the Christmas holidays, I took the following photo and immediately thought that it would be cool to remove the people in the background as well as the wooden stick.
 
 There are plenty of iOS apps that perform magic erasing but usually, it is a premium feature.
 
 So, I challenged myself to implement it.
 
-The first step is **segmentation**, we need to be able to isolate and identify the objects we want to remove. There are many segmentation models out there, the one I choose is **[Segment Anything** by Meta AI Research](https://github.com/facebookresearch/segment-anything).
+The first step is **segmentation**, we need to be able to isolate and identify the objects we want to remove. There are many segmentation models out there, the one I choose is **[Segment Anything by Meta AI Research](https://github.com/facebookresearch/segment-anything)**.
 
-The plan was clear: download the model, make it run on my M1 Pro, convert it to CoreML, and plug it into an iOS demo app. **But the journey has been different.**
+The plan was clear: download the model, make it run on my M1 Pro, convert it to CoreML, and plug it into an iOS demo app. **But the journey has been different.**  
+        </td>
+    </tr>
+</table>
 
 # Segment Anything
 
@@ -128,13 +133,9 @@ If you look at how the `SamPredictor` is implemented in [MobileSAM](https://gith
 **Input: 3 x 1024 x 1024 (CxHxW) RGB image**
 **Output: 1 x 256 x 64 x 64 image embeddings**
 
-- Usage
+- [Usage](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L62-L91&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L62-L91&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L62-L91&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
-    
-- PyTorch Module Definition
-    
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Ftiny_vit_sam.py%23L462-L620&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Ftiny_vit_sam.py%23L462-L620&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
+- [PyTorch Module Definition](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Ftiny_vit_sam.py%23L462-L620&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
 
 ### 3. Prompt Encoder
@@ -144,13 +145,9 @@ If you look at how the `SamPredictor` is implemented in [MobileSAM](https://gith
 
 The former is the s**parse positional embeddings of points**, while the latter is a learned **dense embedding** representing no mask, as reported in the [paper](https://arxiv.org/abs/2304.02643).
 
-- Usage
+- [Usage](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L227&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L227&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L227&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
-    
-- PyTorch Module Definition
-    
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fprompt_encoder.py%23L7-L214&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fprompt_encoder.py%23L7-L214&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
+- [PyTorch Module Definition](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fprompt_encoder.py%23L7-L214&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
 
 ### 4. Mask Decoder
@@ -164,24 +161,16 @@ Input:
 
 Output: 1 x 4 x 256 x 256 low-resolution masks and 1 x 4 IOU scores.
 
-- Usage
+- [Usage](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L236&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L236&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L170-L236&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
-    
-- PyTorch Module Definition
-    
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fmask_decoder.py%23L7-L149&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fmask_decoder.py%23L7-L149&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
+- [PyTorch Module Definition](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fmask_decoder.py%23L7-L149&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
 
 ### 5. Postprocessing
 
-- Upsample the masks to match the original image size using a bilinear filter.
+- [Upsample the masks to match the original image size using a bilinear filter.](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fsam.py%23L134-L163&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fsam.py%23L134-L163&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fmodeling%2Fsam.py%23L134-L163&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
-    
-- Clamp the mask values into the [0, 1] range.
-    
-    [https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L239-L244&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L239-L244&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
+- [Clamp the mask values into the [0, 1] range.](https://emgithub.com/iframe.html?target=https%3A%2F%2Fgithub.com%2FChaoningZhang%2FMobileSAM%2Fblob%2Fc12dd83cbe26dffdcc6a0f9e7be2f6fb024df0ed%2Fmobile_sam%2Fpredictor.py%23L239-L244&style=default&type=code&showBorder=on&showLineNumbers=on&showFileMeta=on&showFullPath=on&showCopy=on)
     
 
 # Porting to CoreML
@@ -711,4 +700,6 @@ public class SegmentAnything {
 }
 ```
 
-[https://youtu.be/wB1GUHIEoJE](https://youtu.be/wB1GUHIEoJE)
+
+
+https://github.com/AlessandroToschi/SegmentAnythingMobile/assets/6044244/7fb6472d-0253-400e-b9af-0f77b25f6aa7
